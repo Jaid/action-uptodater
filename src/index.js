@@ -8,13 +8,14 @@ for (const value of rulesRequire.keys()) {
 }
 
 async function main() {
-  const ruleTestResults = {}
+  const relevantRuleNames = []
   for (const [ruleName, rule] of Object.entries(rules)) {
-    let isRelevantToRepo = false
     if (rule.test) {
-      isRelevantToRepo = await resolveAny(rule.test)
+      const isRelevantToRepo = await resolveAny(rule.test)
+      if (isRelevantToRepo) {
+        relevantRuleNames.push(ruleName)
+      }
     }
-    ruleTestResults[ruleName] = isRelevantToRepo
   }
   Object.keys(rules).filter(async ruleName => {
     const rule = rules[ruleName]
@@ -23,7 +24,7 @@ async function main() {
     }
     return rule.test()
   })
-  // .console.log(`Rules: ${Object.keys(rules).join(" ")}`)
+  console.log(`Applied rules: ${relevantRuleNames.join(" ")}`)
 }
 
 main()
