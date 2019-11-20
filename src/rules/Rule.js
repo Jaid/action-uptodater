@@ -22,7 +22,7 @@ export default class Rule {
 
   matchFileExact(fileName, expectedContents) {
     this.addTester(async () => {
-      const file = path.absolute(fileName)
+      const file = path.resolve(fileName)
       const [expectedHash, fileHash] = await Promise.all([
         hasha(expectedContents),
         hasha.fromFile(file),
