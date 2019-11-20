@@ -35,7 +35,7 @@ async function main() {
   const relevantRules = pick(rules, relevantRuleNames)
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     try {
-      console.group(`Rule ${ruleName}`)
+      console.groupCollapsed(`Rule ${ruleName}`)
       if (!rule.hasTesters()) {
         console.log("Rule does not have any testers, skipping")
         continue
