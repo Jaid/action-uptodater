@@ -4,7 +4,7 @@ export default new class extends Rule {
 
   constructor() {
     super()
-    this.matchFileExact("license.txt", require("./license.txt"))
+    this.matchFileExact("license.txt", require("./license.txt").default)
   }
 
 }
