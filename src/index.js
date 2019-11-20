@@ -1,3 +1,5 @@
+import resolveAny from "resolve-any"
+
 const rules = {}
 const rulesRequire = require.context("./rules/", true, /index.js$/)
 for (const value of rulesRequire.keys()) {
@@ -6,7 +8,22 @@ for (const value of rulesRequire.keys()) {
 }
 
 async function main() {
-  console.log(`Rules: ${Object.keys(rules).join(" ")}`)
+  const ruleTestResults = {}
+  for (const [ruleName, rule] of Object.entries(rules)) {
+    let isRelevantToRepo = false
+    if (rule.test) {
+      isRelevantToRepo = await resolveAny(rule.test)
+    }
+    ruleTestResults[ruleName] = isRelevantToRepo
+  }
+  Object.keys(rules).filter(async ruleName => {
+    const rule = rules[ruleName]
+    if (!rule.test) {
+      return false
+    }
+    return rule.test()
+  })
+  // .console.log(`Rules: ${Object.keys(rules).join(" ")}`)
 }
 
 main()
