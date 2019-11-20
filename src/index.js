@@ -1,4 +1,6 @@
 import resolveAny from "resolve-any"
+import {pick} from "lodash"
+import {setFailed} from "@actions/core"
 
 const rules = {}
 const rulesRequire = require.context("./rules/", true, /index.js$/)
@@ -27,9 +29,19 @@ async function main() {
     return rule.test()
   })
   console.log(`Matching rules: ${relevantRuleNames.join(" ")}`)
-  for (const rule of rules) {
-    console.log("ABC")
+  const relevantRules = pick(rules, relevantRuleNames)
+  for (const [ruleName, rule] of Object.entries(relevantRules)) {
+    try {
+      console.group(`Rule ${ruleName}`)
+    } catch (error) {
+      console.error(`Processing rule ${ruleName} failed`)
+      console.error(error)
+    }
+    console.groupEnd()
   }
 }
 
-main()
+main().catch(error => {
+  console.error(error)
+  setFailed("jaid/action-node-boilerplate failed")
+})
