@@ -10,11 +10,13 @@ for (const value of rulesRequire.keys()) {
 async function main() {
   const relevantRuleNames = []
   for (const [ruleName, rule] of Object.entries(rules)) {
-    if (rule.test) {
-      const isRelevantToRepo = await resolveAny(rule.test)
-      if (isRelevantToRepo) {
-        relevantRuleNames.push(ruleName)
-      }
+    if (!rule.test) {
+      console.debug("Rule %s does not have a test function, this is probably unintended", ruleName)
+      continue
+    }
+    const isRelevantToRepo = await resolveAny(rule.test)
+    if (isRelevantToRepo) {
+      relevantRuleNames.push(ruleName)
     }
   }
   Object.keys(rules).filter(async ruleName => {
