@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "webpackConfigJaid": "cli",
+  "version": "0.1.0",
+  "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/exec": "^1.0.1",
+    "@actions/io": "^1.0.1",
+    "@babel/runtime": "^7.7.2",
+    "guess-package-manager": "^1.1.2",
+    "has-content": "^1.1.0"
+  },
+  "devDependencies": {
+    "acorn": "^7.1.0",
+    "babel-preset-jaid": "^6.10.0",
+    "browserslist-config-jaid-node": "^2.2.2",
+    "eslint": "^6.6.0",
+    "eslint-config-jaid": "^1.36.0",
+    "rimraf": "^3.0.0",
+    "webpack-config-jaid": "^5.27.10"
+  },
+  "scripts": {
+    "build": "rimraf build && NODE_ENV=production webpack",
+    "build-push": "npm run build && git add build && git commit --sign --message 'Rebuilt src/' && git push"
+  }
+}
