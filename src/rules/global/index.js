@@ -4,8 +4,9 @@ export default new class extends Rule {
 
   constructor() {
     super()
-    this.matchFileExact("license.txt", require("./license.txt").default)
-    this.matchFileExact(".editorconfig", require("./editorconfig.txt").default)
+    this.assertFileHasExact("license.txt", require("./license.txt").default)
+    this.assertFileHasExact(".editorconfig", require("./editorconfig.txt").default)
+    this.assertFileHasContent("readme.md")
   }
 
 }

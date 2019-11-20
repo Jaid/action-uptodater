@@ -1,8 +1,8 @@
 import path from "path"
 
-import hasContent from "has-content"
+import hasContent, {isEmpty} from "has-content"
 import hasha from "hasha"
-import globby from "globby"
+import fsp from "@absolunet/fsp"
 
 export default class Rule {
 
@@ -20,7 +20,7 @@ export default class Rule {
     this.testers.push(testFunction)
   }
 
-  matchFileExact(fileName, expectedContents) {
+  assertFileHasExact(fileName, expectedContents) {
     this.addTester(async () => {
       const file = path.resolve(fileName)
       const [expectedHash, fileHash] = await Promise.all([
@@ -31,12 +31,42 @@ export default class Rule {
           algorithm: "md5",
         }),
       ])
-      console.log(`Testing file ${file} for hash ${expectedHash}`)
+      console.log(`Assert that ${file} has hash ${expectedHash}`)
       if (expectedHash === fileHash) {
         return true
       }
       console.log(`They are not equal, got hash ${fileHash} from file`)
       return false
+    })
+  }
+
+  assertFileExists(fileName) {
+    this.addTester(async () => {
+      const file = path.resolve(fileName)
+      console.log(`Assert that ${file} exists`)
+      const exists = await fsp.pathExists(file)
+      if (!exists) {
+        console.log(`${file} does not exist`)
+      }
+      return exists
+    })
+  }
+
+  assertFileHasContent(fileName) {
+    this.addTester(async () => {
+      const file = path.resolve(fileName)
+      console.log(`Assert that ${file} exists and is not empty`)
+      const exists = await fsp.pathExists(file)
+      if (!exists) {
+        console.log(`${file} does not exist`)
+        return false
+      }
+      const content = await fsp.readFile(file)
+      if (isEmpty(content)) {
+        console.log(`${file} is empty`)
+        return false
+      }
+      return exists
     })
   }
 
