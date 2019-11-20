@@ -24,8 +24,12 @@ export default class Rule {
     this.addTester(async () => {
       const file = path.resolve(fileName)
       const [expectedHash, fileHash] = await Promise.all([
-        hasha(expectedContents),
-        hasha.fromFile(file),
+        hasha.async(expectedContents, {
+          algorithm: "md5",
+        }),
+        hasha.fromFile(file, {
+          algorithm: "md5",
+        }),
       ])
       console.log(`Testing file ${file} for hash ${expectedHash}`)
       if (expectedHash === fileHash) {
