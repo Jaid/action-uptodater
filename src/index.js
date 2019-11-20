@@ -19,7 +19,7 @@ async function main() {
       console.debug("Rule %s does not have a isRelevantToRepo function, this is probably unintended", ruleName)
       continue
     }
-    const isRelevantToRepo = await resolveAny(rule.test)
+    const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo)
     if (isRelevantToRepo) {
       relevantRuleNames.push(ruleName)
     }
