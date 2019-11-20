@@ -12,8 +12,8 @@ for (const value of rulesRequire.keys()) {
 async function main() {
   const relevantRuleNames = []
   for (const [ruleName, rule] of Object.entries(rules)) {
-    if (!rule.test) {
-      console.debug("Rule %s does not have a test function, this is probably unintended", ruleName)
+    if (!rule.isRelevantToRepo) {
+      console.debug("Rule %s does not have a isRelevantToRepo function, this is probably unintended", ruleName)
       continue
     }
     const isRelevantToRepo = await resolveAny(rule.test)
@@ -33,6 +33,16 @@ async function main() {
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     try {
       console.group(`Rule ${ruleName}`)
+      if (!rule.hasTesters()) {
+        console.log("Rule does not have any testers, skipping")
+        continue
+      }
+      for (const tester of rule.testers) {
+        const result = await tester()
+        if (result !== true) {
+          console.log("Test did not return true")
+        }
+      }
     } catch (error) {
       console.error(`Processing rule ${ruleName} failed`)
       console.error(error)

@@ -8,8 +8,10 @@
     "@actions/exec": "^1.0.1",
     "@actions/io": "^1.0.1",
     "@babel/runtime": "^7.7.2",
+    "globby": "^10.0.1",
     "guess-package-manager": "^1.1.2",
     "has-content": "^1.1.0",
+    "hasha": "^5.1.0",
     "resolve-any": "^1.0.0"
   },
   "devDependencies": {
