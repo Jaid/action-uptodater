@@ -12,7 +12,8 @@
     "guess-package-manager": "^1.1.2",
     "has-content": "^1.1.0",
     "hasha": "^5.1.0",
-    "resolve-any": "^1.0.0"
+    "resolve-any": "^1.0.0",
+    "zahl": "^2.0.1"
   },
   "devDependencies": {
     "acorn": "^7.1.0",

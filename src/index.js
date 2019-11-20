@@ -1,6 +1,7 @@
 import resolveAny from "resolve-any"
 import {pick} from "lodash"
 import {setFailed} from "@actions/core"
+import zahl from "zahl"
 
 const rules = {}
 const rulesRequire = require.context("./rules/", true, /index.js$/)
@@ -8,6 +9,8 @@ for (const value of rulesRequire.keys()) {
   const {ruleName} = value.match(/[/\\](?<ruleName>.+?)[/\\]index\.js$/).groups
   rules[ruleName] = new rulesRequire(value).default
 }
+
+console.log(`${zahl(Object.keys(rules).length, "rule")} loaded`)
 
 async function main() {
   const relevantRuleNames = []
