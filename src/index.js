@@ -1,6 +1,6 @@
 import resolveAny from "resolve-any"
 import {pick} from "lodash"
-import {setFailed} from "@actions/core"
+import {setFailed, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
 
 const rules = {}
@@ -35,7 +35,7 @@ async function main() {
   const relevantRules = pick(rules, relevantRuleNames)
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     try {
-      console.groupCollapsed(`Rule ${ruleName}`)
+      startGroup(`Rule ${ruleName}`)
       if (!rule.hasTesters()) {
         console.log("Rule does not have any testers, skipping")
         continue
@@ -50,7 +50,7 @@ async function main() {
       console.error(`Processing rule ${ruleName} failed`)
       console.error(error)
     }
-    console.groupEnd()
+    endGroup()
   }
 }
 
