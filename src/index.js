@@ -1,7 +1,10 @@
+import path from "path"
+
 import resolveAny from "resolve-any"
 import {pick} from "lodash"
 import {setFailed, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
+import fsp from "@absolunet/fsp"
 
 const rules = {}
 const rulesRequire = require.context("./rules/", true, /index.js$/)
@@ -12,7 +15,20 @@ for (const value of rulesRequire.keys()) {
 
 console.log(`${zahl(Object.keys(rules).length, "rule")} loaded`)
 
+async function getPkg() {
+  const file = path.resolve("package.json")
+  const exists = await fsp.pathExists(file)
+  if (!exists) {
+    return null
+  }
+  const pkg = await fsp.readJson(file)
+  return pkg
+}
+
 async function main() {
+  const info = {
+    pkg: await getPkg(),
+  }
   const relevantRuleNames = []
   for (const [ruleName, rule] of Object.entries(rules)) {
     if (!rule.isRelevantToRepo) {
@@ -24,13 +40,6 @@ async function main() {
       relevantRuleNames.push(ruleName)
     }
   }
-  Object.keys(rules).filter(async ruleName => {
-    const rule = rules[ruleName]
-    if (!rule.test) {
-      return false
-    }
-    return rule.test()
-  })
   console.log(`Matching rules: ${relevantRuleNames.join(" ")}`)
   const relevantRules = pick(rules, relevantRuleNames)
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
@@ -41,7 +50,7 @@ async function main() {
         continue
       }
       for (const tester of rule.testers) {
-        const result = await tester()
+        const result = await tester(info)
         if (result !== true) {
           console.log("Test did not return true")
         }

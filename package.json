@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
   "dependencies": {
+    "@absolunet/fsp": "^1.6.2",
     "@actions/core": "^1.2.0",
     "@actions/exec": "^1.0.1",
     "@actions/io": "^1.0.1",
