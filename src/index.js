@@ -7,6 +7,8 @@ for (const value of rulesRequire.keys()) {
   rules[ruleName] = rulesRequire(value)
 }
 
+console.info(rules.global)
+
 async function main() {
   const relevantRuleNames = []
   for (const [ruleName, rule] of Object.entries(rules)) {
