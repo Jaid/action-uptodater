@@ -4,7 +4,7 @@ const rules = {}
 const rulesRequire = require.context("./rules/", true, /index.js$/)
 for (const value of rulesRequire.keys()) {
   const {ruleName} = value.match(/[/\\](?<ruleName>.+?)[/\\]index\.js$/).groups
-  rules[ruleName] = rulesRequire(value)
+  rules[ruleName] = new rulesRequire(value).default
 }
 
 async function main() {
@@ -26,7 +26,10 @@ async function main() {
     }
     return rule.test()
   })
-  console.log(`Applied rules: ${relevantRuleNames.join(" ")}`)
+  console.log(`Matching rules: ${relevantRuleNames.join(" ")}`)
+  for (const rule of rules) {
+    console.log("ABC")
+  }
 }
 
 main()
