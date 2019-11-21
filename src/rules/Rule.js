@@ -6,6 +6,9 @@ import fsp from "@absolunet/fsp"
 
 export default class Rule {
 
+  /**
+   * @type {import("../testers/Tester").default[]}
+   */
   testers = []
 
   isRelevantToRepo() {
@@ -16,8 +19,11 @@ export default class Rule {
     return hasContent(this.testers)
   }
 
-  addTester(testFunction) {
-    this.testers.push(testFunction)
+  addTester(name, testFunction) {
+    this.testers.push({
+      name,
+      test: testFunction,
+    })
   }
 
   assertFileHasExact(fileName, expectedContents) {

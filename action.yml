@@ -6,6 +6,8 @@ inputs:
     default: development
     description: NODE_ENV setting for installing execution (affects the amount of dependencies installed, but I would recommend keeping development in any case)
     required: true
+  token:
+    description: Repository token for allowing the action to make commits.
 runs:
   using: node12
   main: build/index.js

@@ -5,8 +5,13 @@ import {pick} from "lodash"
 import {setFailed, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
+import github from "@actions/github"
 
+/**
+ * @type {Object<string, import("./rules/Rule").default>}
+ */
 const rules = {}
+
 const rulesRequire = require.context("./rules/", true, /index.js$/)
 for (const value of rulesRequire.keys()) {
   const {ruleName} = value.match(/[/\\](?<ruleName>.+?)[/\\]index\.js$/).groups
@@ -52,9 +57,8 @@ async function main() {
         continue
       }
       for (const tester of rule.testers) {
-        const result = await tester(info)
-        if (result !== true) {
-          console.log("Test did not return true")
+        const result = await tester.run()
+        if (result === false) {
           failedTests++
           continue
         }
