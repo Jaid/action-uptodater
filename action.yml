@@ -9,5 +9,5 @@ runs:
   using: node12
   main: build/index.js
 branding:
-  icon: download
-  color: green
+  icon: package
+  color: yellow
