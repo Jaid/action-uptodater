@@ -3,8 +3,10 @@ import path from "path"
 import resolveAny from "resolve-any"
 import {pick} from "lodash"
 import {setFailed, startGroup, endGroup, getInput} from "@actions/core"
+import {context} from "@actions/github"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
+import octokitCreatePullRequest from "octokit-create-pull-request"
 import Octokit from "@octokit/rest"
 
 /**
@@ -74,7 +76,25 @@ async function main() {
   if (failedTests) {
     setFailed(`Only ${passedTests}/${totalTests} tests passed`)
     const token = getInput("token", {required: true})
-    const octokit = new Octokit({auth: `token ${token}`})
+    const ExtendedOctokit = Octokit.plugin(octokitCreatePullRequest)
+    const octokit = new ExtendedOctokit({
+      auth: `token ${token}`,
+    })
+    const {owner, repo} = context.repo
+    const pullRequestId = await octokit.createPullRequest({
+      owner,
+      repo,
+      title: "Pull Request",
+      body: "abc",
+      head: "uibpobiiu",
+      changes: {
+        commit: "testcommit",
+        files: {
+          "readme.md": "hi",
+        },
+      },
+    })
+    console.log(pullRequestId)
   }
 }
 
