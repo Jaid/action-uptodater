@@ -76,25 +76,32 @@ async function main() {
   if (failedTests) {
     setFailed(`Only ${passedTests}/${totalTests} tests passed`)
     const token = getInput("token", {required: true})
-    const ExtendedOctokit = Octokit.plugin(octokitCreatePullRequest)
-    const octokit = new ExtendedOctokit({
-      auth: `token ${token}`,
-    })
+    // const ExtendedOctokit = Octokit.plugin(octokitCreatePullRequest)
+    // const octokit = new ExtendedOctokit({
+    //   auth: `token ${token}`,
+    // })
     const {owner, repo} = context.repo
-    const pullRequestId = await octokit.createPullRequest({
+    // const pullRequestId = await octokit.createPullRequest({
+    //   owner,
+    //   repo,
+    //   title: "Pull Request",
+    //   body: "abc",
+    //   head: "uibpobiiu",
+    //   changes: {
+    //     commit: "testcommit",
+    //     files: {
+    //       "readme.md": "hi",
+    //     },
+    //   },
+    // })
+    // console.log(pullRequestId)
+    const octokit = new (require("@actions/github").GitHub)()
+    await octokit.issues.create({
       owner,
       repo,
-      title: "Pull Request",
+      title: "Test",
       body: "abc",
-      head: "uibpobiiu",
-      changes: {
-        commit: "testcommit",
-        files: {
-          "readme.md": "hi",
-        },
-      },
     })
-    console.log(pullRequestId)
   }
 }
 
