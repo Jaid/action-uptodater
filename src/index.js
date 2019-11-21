@@ -95,7 +95,7 @@ async function main() {
     //   },
     // })
     // console.log(pullRequestId)
-    const octokit = new (require("@actions/github").GitHub)()
+    const octokit = new (require("@actions/github").GitHub)(token)
     await octokit.issues.create({
       owner,
       repo,
