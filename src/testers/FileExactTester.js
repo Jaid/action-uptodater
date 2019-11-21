@@ -19,7 +19,9 @@ export default class extends Tester {
 
   constructor(file, expectedContent) {
     super()
-    this.expectedHash = hasha(expectedContent, {})
+    this.expectedHash = hasha(expectedContent, {
+      algorithm: "md5",
+    })
     this.file = path.resolve(file)
     this.shortFile = file
     this.setName(`${chalk.yellow(this.shortFile)} should have md5 ${chalk.yellow(this.expectedHash)}`)
