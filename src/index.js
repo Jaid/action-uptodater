@@ -96,6 +96,7 @@ async function main() {
     // })
     // console.log(pullRequestId)
     console.log(`Token length: ${token.length}`)
+    console.log(`Token start: ${token.slice(0, 9)}`)
     const octokit = new (require("@actions/github").GitHub)(token)
     await octokit.issues.create({
       owner,
