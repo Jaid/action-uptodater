@@ -3,12 +3,15 @@ export default class Tester {
   /**
    * @type {string}
    */
-  name = null
+  name = "Tester"
 
   /**
    * @type {Function}
+   * This should be overriden
    */
-  test = null
+  async test() {
+    return true
+  }
 
   setName(name) {
     this.name = name
