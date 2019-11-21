@@ -1,3 +1,7 @@
+import stripAnsi from "strip-ansi"
+import figures from "figures"
+import chalk from "chalk"
+
 export default class Tester {
 
   /**
@@ -13,8 +17,9 @@ export default class Tester {
     return true
   }
 
-  setName(name) {
-    this.name = name
+  setName(ansiName) {
+    this.name = stripAnsi(ansiName)
+    this.ansiName = ansiName
   }
 
   setFunction(testFunction) {
@@ -24,10 +29,10 @@ export default class Tester {
   async run() {
     const result = await this.test()
     if (result === false) {
-      console.log(`(false) ${this.name}`)
+      console.log(`${chalk.green(figures.tick)} ${this.name}`)
       return false
     }
-    console.log(`( true) ${this.name}`)
+    console.log(`${chalk.red(figures.cross)} ${this.name}`)
     return true
   }
 

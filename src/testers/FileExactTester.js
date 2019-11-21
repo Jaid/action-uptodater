@@ -3,6 +3,7 @@ import path from "path"
 import fsp from "@absolunet/fsp"
 import Tester from "src/testers/Tester"
 import hasha from "hasha"
+import chalk from "chalk"
 
 export default class extends Tester {
 
@@ -21,7 +22,7 @@ export default class extends Tester {
     this.expectedHash = hasha(expectedContent, {})
     this.file = path.resolve(file)
     this.shortFile = file
-    this.name = `${this.shortFile} should have md5 ${this.expectedHash}`
+    this.setName(`${chalk.yellow(this.shortFile)} should have md5 ${chalk.yellow(this.expectedHash)}`)
   }
 
   async test() {

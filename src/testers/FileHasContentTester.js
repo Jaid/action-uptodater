@@ -2,6 +2,7 @@ import path from "path"
 
 import fsp from "@absolunet/fsp"
 import Tester from "src/testers/Tester"
+import chalk from "chalk"
 
 export default class extends Tester {
 
@@ -14,7 +15,7 @@ export default class extends Tester {
     super()
     this.file = path.resolve(file)
     this.shortFile = file
-    this.name = `${this.shortFile} should exist and have content`
+    this.setName(`${chalk.yellow(this.shortFile)} should exist and have content`)
   }
 
   async test() {
