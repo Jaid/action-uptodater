@@ -1,5 +1,5 @@
-import FileExactTester from "src/testers/FileExactTester"
-import FileHasContentTester from "src/testers/FileHasContentTester"
+import FileExactTester from "src/testers/FileExactTester.js"
+import FileHasContentTester from "root/src/testers/FileHasContentTester.js"
 
 import Rule from "../Rule"
 
