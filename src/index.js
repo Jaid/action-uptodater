@@ -68,7 +68,7 @@ async function main() {
   }
   const totalTests = passedTests + failedTests
   if (failedTests) {
-    setFailed(`Only ${passedTests}/${totalTests} passed`)
+    setFailed(`Only ${passedTests}/${totalTests} tests passed`)
   }
 }
 
