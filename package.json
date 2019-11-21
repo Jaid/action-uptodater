@@ -10,6 +10,7 @@
     "@actions/github": "^1.1.0",
     "@actions/io": "^1.0.1",
     "@babel/runtime": "^7.7.2",
+    "@octokit/rest": "^16.35.0",
     "chalk": "^3.0.0",
     "figures": "^3.1.0",
     "globby": "^10.0.1",

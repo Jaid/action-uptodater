@@ -2,11 +2,10 @@ import path from "path"
 
 import resolveAny from "resolve-any"
 import {pick} from "lodash"
-import {setFailed, startGroup, endGroup} from "@actions/core"
+import {setFailed, startGroup, endGroup, getInput} from "@actions/core"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
-
-// const github = require("@actions/github")
+import Octokit from "@octokit/rest"
 
 /**
  * @type {Object<string, import("./rules/Rule").default>}
@@ -74,6 +73,8 @@ async function main() {
   const totalTests = passedTests + failedTests
   if (failedTests) {
     setFailed(`Only ${passedTests}/${totalTests} tests passed`)
+    const token = getInput("token", {required: true})
+    const octokit = new Octokit({auth: `token ${token}`})
   }
 }
 
