@@ -5,7 +5,8 @@ import {pick} from "lodash"
 import {setFailed, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
-import github from "@actions/github"
+
+const github = __non_webpack_require__("@actions/github")
 
 /**
  * @type {Object<string, import("./rules/Rule").default>}
