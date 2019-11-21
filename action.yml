@@ -1,11 +1,7 @@
-name: Install Node dependencies
-description: GitHub Action for installing dependencies from package.json after checkout.
+name: Validate boilerplate code
+description: Validates that my Node projects still use up-to-date boilerplate code.
 author: Jaid
 inputs:
-  nodeEnv:
-    default: development
-    description: NODE_ENV setting for installing execution (affects the amount of dependencies installed, but I would recommend keeping development in any case)
-    required: true
   token:
     description: Repository token for allowing the action to make commits.
 runs:
