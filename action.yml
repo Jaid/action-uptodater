@@ -4,6 +4,7 @@ author: Jaid
 inputs:
   token:
     description: Repository token for allowing the action to make commits.
+    required: true
 runs:
   using: node12
   main: build/index.js
