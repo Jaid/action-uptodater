@@ -1,3 +1,9 @@
 # action-node-boilerplate
-## Under construction
-Not much to see right now. Come back lator! :crocodile:
+
+Opinionated Action that validates the repository content's boilerplate code in the way I like to handle my NodeJS projects.
+
+### Inputs
+
+Name|Description
+---|---
+`token`|GitHub token
