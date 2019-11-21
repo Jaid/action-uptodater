@@ -42,6 +42,8 @@ async function main() {
   }
   console.log(`Matching rules: ${relevantRuleNames.join(" ")}`)
   const relevantRules = pick(rules, relevantRuleNames)
+  let passedTests = 0
+  let failedTests = 0
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     try {
       startGroup(`Rule ${ruleName}`)
@@ -53,13 +55,20 @@ async function main() {
         const result = await tester(info)
         if (result !== true) {
           console.log("Test did not return true")
+          failedTests++
+          continue
         }
+        passedTests++
       }
     } catch (error) {
       console.error(`Processing rule ${ruleName} failed`)
       console.error(error)
     }
     endGroup()
+  }
+  const totalTests = passedTests + failedTests
+  if (failedTests) {
+    setFailed(`Only ${passedTests}/${totalTests} passed`)
   }
 }
 
