@@ -8,4 +8,9 @@ export default configure({
   nodeExternals: false,
   outDir: path.join(__dirname, "build"),
   licenseFileName: false,
+  extra: {
+    resolve: {
+      mainFields: ["main", "module"],
+    },
+  },
 })
