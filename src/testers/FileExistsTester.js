@@ -14,19 +14,13 @@ export default class extends Tester {
     super()
     this.file = path.resolve(file)
     this.shortFile = file
-    this.name = `${this.shortFile} should exist and have content`
+    this.name = `${this.shortFile} should exist`
   }
 
   async test() {
     const exists = await fsp.pathExists(this.file)
     if (!exists) {
       console.log(`${this.shortFile} does not exist`)
-      return false
-    }
-    const stat = await fsp.stat(this.file)
-    const bytes = stat.size
-    if (!bytes) {
-      console.log(`${this.shortFile} does exist, but it empty`)
       return false
     }
     return true
