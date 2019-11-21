@@ -6,7 +6,7 @@ import {setFailed, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
 
-const github = require("@actions/github")
+// const github = require("@actions/github")
 
 /**
  * @type {Object<string, import("./rules/Rule").default>}
