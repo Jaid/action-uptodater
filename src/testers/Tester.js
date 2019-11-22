@@ -1,6 +1,7 @@
 import stripAnsi from "strip-ansi"
 import figures from "figures"
 import chalk from "chalk"
+import Fix from "src/Fix"
 
 export default class Tester {
 
@@ -16,6 +17,11 @@ export default class Tester {
   async test() {
     return true
   }
+
+  /**
+   * @type {import("src/Fix").default[]}
+   */
+  fixes = []
 
   setName(ansiName) {
     this.name = stripAnsi(ansiName)
@@ -34,6 +40,11 @@ export default class Tester {
     }
     console.log(`${chalk.green(figures.tick)} ${this.name}`)
     return true
+  }
+
+  addFix(fileName, content) {
+    const fix = new Fix(fileName, content)
+    this.fixes.push(fix)
   }
 
 }

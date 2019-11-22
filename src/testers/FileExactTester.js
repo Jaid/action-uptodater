@@ -19,6 +19,7 @@ export default class extends Tester {
 
   constructor(file, expectedContent) {
     super()
+    this.expectedContent = expectedContent
     this.expectedHash = hasha(expectedContent, {
       algorithm: "md5",
     })
@@ -41,6 +42,10 @@ export default class extends Tester {
     }
     console.log(`They are not equal, got hash ${actualHash} from file`)
     return false
+  }
+
+  collectFixes() {
+    this.addFix(this.shortFile, this.expectedContent)
   }
 
 }

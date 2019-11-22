@@ -1,7 +1,7 @@
 import path from "path"
 
 import resolveAny from "resolve-any"
-import {pick} from "lodash"
+import {pick, isFunction} from "lodash"
 import {setFailed, startGroup, endGroup, getInput} from "@actions/core"
 import {context, GitHub} from "@actions/github"
 import {exec} from "@actions/exec"
@@ -9,6 +9,7 @@ import zahl from "zahl"
 import fsp from "@absolunet/fsp"
 import octokitCreatePullRequest from "octokit-create-pull-request"
 import Octokit from "@octokit/rest"
+import hasContent from "has-content"
 
 /**
  * @type {Object<string, import("./rules/Rule").default>}
@@ -52,6 +53,7 @@ async function main() {
   const relevantRules = pick(rules, relevantRuleNames)
   let passedTests = 0
   let failedTests = 0
+  let fixes = []
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     try {
       startGroup(`Rule ${ruleName}`)
@@ -63,6 +65,10 @@ async function main() {
         const result = await tester.run()
         if (result === false) {
           failedTests++
+          if (isFunction(tester.collectFixes)) {
+            tester.collectFixes()
+            fixes = [...fixes, ...tester.fixes]
+          }
           continue
         }
         passedTests++
@@ -73,11 +79,14 @@ async function main() {
     }
     endGroup()
   }
-  const totalTests = passedTests + failedTests
   if (failedTests) {
-    setFailed(`Only ${passedTests}/${totalTests} tests passed`)
     const token = getInput("token", {required: true})
+    const totalTests = passedTests + failedTests
+    setFailed(`Only ${passedTests}/${totalTests} tests passed`)
     const {owner, repo} = context.repo
+    if (hasContent(fixes)) {
+      console.log("HAS FIXES")
+    }
     // const pullRequestId = await octokit.createPullRequest({
     //   owner,
     //   repo,

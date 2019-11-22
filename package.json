@@ -17,6 +17,7 @@
     "guess-package-manager": "^1.1.2",
     "has-content": "^1.1.0",
     "hasha": "^5.1.0",
+    "lodash": "^4.17.15",
     "octokit-create-pull-request": "^1.4.1",
     "resolve-any": "^1.0.0",
     "strip-ansi": "^6.0.0",
