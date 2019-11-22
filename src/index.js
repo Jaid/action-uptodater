@@ -104,7 +104,7 @@ async function main() {
     await exec("git", "status")
     await exec("git", ["add", "."])
     await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
-    await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${repo}.git`, "HEAD:master"])
+    await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, "HEAD:master"])
     // console.log(pullRequestId)
   }
 }
