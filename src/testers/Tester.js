@@ -36,13 +36,13 @@ export default class Tester {
   async run() {
     const result = await this.test()
     if (result !== true) {
-      console.log(`${chalk.red(figures.cross)} ${this.name}`)
+      console.log(`${chalk.red(figures.cross)} ${this.ansiName}`)
       if (isString(result)) {
         console.log(result)
       }
       return false
     }
-    console.log(`${chalk.green(figures.tick)} ${this.name}`)
+    console.log(`${chalk.green(figures.tick)} ${this.ansiName}`)
     return true
   }
 
