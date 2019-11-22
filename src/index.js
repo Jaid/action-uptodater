@@ -55,6 +55,7 @@ async function main() {
   let failedTests = 0
   let fixes = []
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
+    let fixables = 0
     try {
       startGroup(`Rule ${ruleName}`)
       if (!rule.hasTesters()) {
@@ -67,7 +68,11 @@ async function main() {
           failedTests++
           if (isFunction(tester.collectFixes)) {
             tester.collectFixes()
-            fixes = [...fixes, ...tester.fixes]
+            fixables += tester.fixes.length
+            if (fixables > 0) {
+              fixes = [...fixes, ...tester.fixes]
+            }
+            console.log(`This tester registered ${zahl(fixables, "possible fix")}`)
           }
           continue
         }
