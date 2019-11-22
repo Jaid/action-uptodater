@@ -91,6 +91,8 @@ async function main() {
     //     },
     //   },
     // })
+    const readmeContent = await fsp.readFile("readme.md")
+    await fsp.outputFile("readme.md", `${readmeContent}1`)
     await exec("git", "status")
     // console.log(pullRequestId)
   }
