@@ -91,7 +91,7 @@ async function main() {
     //     },
     //   },
     // })
-    await exec("hub", "status")
+    await exec("git", "status")
     // console.log(pullRequestId)
   }
 }
