@@ -38,7 +38,7 @@ export default class Tester {
     if (result !== true) {
       console.log(`${chalk.red(figures.cross)} ${this.name}`)
       if (isString(result)) {
-        console.log(`  ${result}`)
+        console.log(result)
       }
       return false
     }
