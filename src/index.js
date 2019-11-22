@@ -92,7 +92,7 @@ async function main() {
     //   },
     // })
     await exec("hub", "status")
-    console.log(pullRequestId)
+    // console.log(pullRequestId)
   }
 }
 
