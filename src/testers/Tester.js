@@ -2,6 +2,7 @@ import stripAnsi from "strip-ansi"
 import figures from "figures"
 import chalk from "chalk"
 import Fix from "src/Fix"
+import {isString} from "lodash"
 
 export default class Tester {
 
@@ -34,8 +35,11 @@ export default class Tester {
 
   async run() {
     const result = await this.test()
-    if (result === false) {
+    if (result !== true) {
       console.log(`${chalk.red(figures.cross)} ${this.name}`)
+      if (isString(result)) {
+        console.log(`  ${result}`)
+      }
       return false
     }
     console.log(`${chalk.green(figures.tick)} ${this.name}`)

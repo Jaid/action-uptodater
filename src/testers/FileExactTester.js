@@ -31,8 +31,7 @@ export default class extends Tester {
   async test() {
     const exists = await fsp.pathExists(this.file)
     if (!exists) {
-      console.log(`${this.shortFile} does not exist`)
-      return false
+      return `${this.shortFile} does not exist`
     }
     const actualHash = await hasha.fromFile(this.file, {
       algorithm: "md5",
@@ -40,8 +39,7 @@ export default class extends Tester {
     if (actualHash === this.expectedHash) {
       return true
     }
-    console.log(`They are not equal, got hash ${actualHash} from file`)
-    return false
+    return `They are not equal, got hash ${actualHash} from file`
   }
 
   collectFixes() {

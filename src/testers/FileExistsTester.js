@@ -21,8 +21,7 @@ export default class extends Tester {
   async test() {
     const exists = await fsp.pathExists(this.file)
     if (!exists) {
-      console.log(`${this.shortFile} does not exist`)
-      return false
+      return `${this.shortFile} does not exist`
     }
     return true
   }
