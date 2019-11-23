@@ -120,6 +120,15 @@ async function main() {
     await exec("git", ["add", "."])
     await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${branchName}`])
+    const octocat = new GitHub(token)
+    await octocat.pulls.create({
+      owner: context.owner,
+      repo: context,
+      title: "test",
+      body: "123",
+      head: branchName,
+      base: "master",
+    })
     // console.log(pullRequestId)
   }
 }
