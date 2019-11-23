@@ -156,6 +156,7 @@ async function main() {
       head: branchName,
       base: "master",
     })
+    console.log(`Pull created: https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${pullCreateResult.data.number}`)
     if (!autoApprove) {
       return
     }
