@@ -118,7 +118,9 @@ async function main() {
     // })
     // const readmeContent = await fsp.readFile("readme.md")
     // await fsp.outputFile("readme.md", `${readmeContent}1`)
-
+    for (const [key, value] of Object.entries(process.env)) {
+      console.log(`${key}: ${value}`)
+    }
     console.log(`GITHUB_ACTOR: ${process.env.GITHUB_ACTOR}`)
     console.log(`INPUT_GITHUB_TOKEN: ${process.env.INPUT_GITHUB_TOKEN}`)
     console.log(`REPOSITORY: ${process.env.REPOSITORY}`)
@@ -130,7 +132,7 @@ async function main() {
     await exec("git", "status")
     await exec("git", ["add", "."])
     await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
-    await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, "HEAD:master"])
+    // await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, "HEAD:master"])
     // console.log(pullRequestId)
   }
 }
