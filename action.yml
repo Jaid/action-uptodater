@@ -9,6 +9,10 @@ inputs:
     description: If true, automatically tries to fix some files and commit them to a pull request
     default: false
     required: true
+  approve:
+    description: If true, pull requests created by this action are automatically approved and merged
+    default: false
+    required: true
 runs:
   using: node12
   main: build/index.js

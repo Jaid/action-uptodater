@@ -137,8 +137,16 @@ async function main() {
       head: branchName,
       base: "master",
     })
+    const autoApprove = getInput("approve", {required: true})
+    if (!autoApprove) {
+      return
+    }
+    // await octocat.pulls.merge({
 
-    console.log(`id: ${pullCreateResult.data.id}`)
+    // })
+    for (const [key, value] of Object.entries(pullCreateResult.data)) {
+      console.log(`data.${key}: ${value}`)
+    }
   }
 }
 
