@@ -124,7 +124,7 @@ async function main() {
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${branchName}`])
     const octocat = new GitHub(token)
     const sha7 = context.sha.slice(0, 8)
-    await octocat.pulls.create({
+    const pullCreateResult = await octocat.pulls.create({
       ...context.repo,
       title: "test",
       body: pullBody({
@@ -137,7 +137,8 @@ async function main() {
       head: branchName,
       base: "master",
     })
-    // console.log(pullRequestId)
+
+    console.log(`id: ${pullCreateResult.data.id}`)
   }
 }
 
