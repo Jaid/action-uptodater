@@ -116,6 +116,9 @@ async function main() {
       console.log(`Change ${fix.fileName}`)
       await fsp.outputFile(fix.fileName, fix.newContent)
       const isDirtyNow = await isGitRepoDirty()
+      if (!isDirtyNow) {
+        continue
+      }
       await exec("git", ["add", "."])
       await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
     }
