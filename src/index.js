@@ -150,7 +150,8 @@ async function main() {
     })
     await octokit.git.deleteRef({
       ...context.repo,
-      ref: branchName,
+      ref: `heads/${branchName}`,
+
     })
   }
 }
