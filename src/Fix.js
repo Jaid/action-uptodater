@@ -12,6 +12,11 @@ export default class Fix {
    */
   newContent = null
 
+  /**
+   * @type {import("src/testers/Tester").default}
+   */
+  tester = null
+
   constructor(fileName, newContent) {
     this.fileName = fileName
     this.newContent = newContent

@@ -115,6 +115,7 @@ async function main() {
     await exec("git", ["checkout", "-b", branchName])
     await exec("git", ["config", "user.email", "action@github.com"])
     await exec("git", ["config", "user.name", "GitHub Action"])
+    const useEmojis = getInput("useEmojis", {required: true})
     for (const fix of fixes) {
       console.log(`Change ${fix.fileName}`)
       await fsp.outputFile(fix.fileName, fix.newContent)
@@ -122,8 +123,9 @@ async function main() {
       if (!isDirtyNow) {
         continue
       }
+      const commitMessagePrefix = useEmojis ? "🔧" : "Autofix:"
       await exec("git", ["add", "."])
-      await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
+      await exec("git", ["commit", "--all", "--message", `${commitMessagePrefix} ${fix.tester.name}`])
       fixedTests++
     }
     if (!fixedTests) {

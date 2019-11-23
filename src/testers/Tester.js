@@ -48,6 +48,7 @@ export default class Tester {
 
   addFix(fileName, content) {
     const fix = new Fix(fileName, content)
+    fix.tester = this
     this.fixes.push(fix)
   }
 

@@ -13,6 +13,10 @@ inputs:
     description: If true, pull requests created by this action are automatically approved and merged
     default: false
     required: true
+  useEmojis:
+    description: If true, use emojis in commit messages
+    default: true
+    required: true
 runs:
   using: node12
   main: build/index.js
