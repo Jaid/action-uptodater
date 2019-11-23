@@ -7,9 +7,8 @@ import {context, GitHub} from "@actions/github"
 import {exec} from "@actions/exec"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
-import octokitCreatePullRequest from "octokit-create-pull-request"
-import Octokit from "@octokit/rest"
-import hasContent, {isEmpty} from "has-content"
+import isGitRepoDirty from "is-git-repo-dirty"
+import {isEmpty} from "has-content"
 
 import pullBody from "./pullBody.hbs"
 
@@ -109,18 +108,17 @@ async function main() {
     if (!shouldPush) {
       return
     }
+    const branchName = `fix-${context.sha.slice(0, 8)}`
+    await exec("git", ["checkout", "-b", branchName])
+    await exec("git", ["config", "user.email", "action@github.com"])
+    await exec("git", ["config", "user.name", "GitHub Action"])
     for (const fix of fixes) {
       console.log(`Change ${fix.fileName}`)
       await fsp.outputFile(fix.fileName, fix.newContent)
+      const isDirtyNow = await isGitRepoDirty()
+      await exec("git", ["add", "."])
+      await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
     }
-    const branchName = `fix-${context.sha.slice(0, 8)}`
-    await exec("git", ["checkout", "-b", branchName])
-    await exec("git", "status")
-    await exec("git", ["config", "user.email", "action@github.com"])
-    await exec("git", ["config", "user.name", "GitHub Action"])
-    await exec("git", "status")
-    await exec("git", ["add", "."])
-    await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${branchName}`])
     const octokit = new GitHub(token)
     const sha7 = context.sha.slice(0, 8)
@@ -151,7 +149,6 @@ async function main() {
     await octokit.git.deleteRef({
       ...context.repo,
       ref: `heads/${branchName}`,
-
     })
   }
 }
