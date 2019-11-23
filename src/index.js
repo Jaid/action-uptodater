@@ -100,14 +100,17 @@ async function main() {
   if (failedTests) {
     const token = getInput("token", {required: true})
     const totalTests = passedTests + failedTests
-    setFailed(`Only ${passedTests}/${totalTests} tests passed`)
+    const failedMessage = `Only ${passedTests}/${totalTests} tests passed`
     if (isEmpty(fixes)) {
+      setFailed(failedMessage)
       return
     }
     const shouldPush = getInput("push", {required: true})
     if (!shouldPush) {
+      setFailed(failedMessage)
       return
     }
+    let fixedTests = 0
     const branchName = `fix-${context.sha.slice(0, 8)}`
     await exec("git", ["checkout", "-b", branchName])
     await exec("git", ["config", "user.email", "action@github.com"])
@@ -121,6 +124,16 @@ async function main() {
       }
       await exec("git", ["add", "."])
       await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
+      fixedTests++
+    }
+    if (!fixedTests) {
+      setFailed(`${failedMessage}, no autofixes applied`)
+      return
+    }
+    console.log(`${fixedTests}/${zahl(failedTests, "test")} could successfully apply an autofix`)
+    const isEverythingFixed = fixedTests === failedTests
+    if (!isEverythingFixed) {
+      setFailed(`${failedMessage}, ${zahl(fixedTests, "fix")} applied`)
     }
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${branchName}`])
     const octokit = new GitHub(token)
