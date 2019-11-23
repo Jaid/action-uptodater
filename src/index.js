@@ -38,7 +38,9 @@ async function main() {
   for (const [key, value] of Object.entries(process.env)) {
     console.log(`${key}: ${value}`)
   }
-
+  for (const [key, value] of Object.entries(context)) {
+    console.log(`context.${key}: ${value}`)
+  }
   const info = {
     pkg: await getPkg(),
   }
