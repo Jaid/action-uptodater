@@ -37,15 +37,15 @@ async function getPkg() {
 }
 
 async function main() {
-  for (const [key, value] of Object.entries(process.env)) {
-    console.log(`${key}: ${value}`)
-  }
-  for (const [key, value] of Object.entries(context)) {
-    console.log(`context.${key}: ${value}`)
-  }
-  for (const [key, value] of Object.entries(context.payload)) {
-    console.log(`context.payload.${key}: ${value}`)
-  }
+  // for (const [key, value] of Object.entries(process.env)) {
+  //   console.log(`${key}: ${value}`)
+  // }
+  // for (const [key, value] of Object.entries(context)) {
+  //   console.log(`context.${key}: ${value}`)
+  // }
+  // for (const [key, value] of Object.entries(context.payload)) {
+  //   console.log(`context.payload.${key}: ${value}`)
+  // }
   const info = {
     pkg: await getPkg(),
   }
