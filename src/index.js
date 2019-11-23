@@ -107,39 +107,19 @@ async function main() {
     if (!shouldPush) {
       return
     }
-    const newBranch = `fix-${context.sha.slice(0, 8)}`
-    console.log(`New branch: ${newBranch}`)
     for (const fix of fixes) {
       console.log(`Change ${fix.fileName}`)
       await fsp.outputFile(fix.fileName, fix.newContent)
     }
-    // const pullRequestId = await octokit.createPullRequest({
-    //   owner,
-    //   repo,
-    //   title: "Pull Request",
-    //   body: "abc",
-    //   head: "uibpobiiu",
-    //   changes: {
-    //     commit: "testcommit",
-    //     files: {
-    //       "readme.md": "hi",
-    //     },
-    //   },
-    // })
-    // const readmeContent = await fsp.readFile("readme.md")
-    // await fsp.outputFile("readme.md", `${readmeContent}1`)
-    console.log(`GITHUB_ACTOR: ${process.env.GITHUB_ACTOR}`)
-    console.log(`INPUT_GITHUB_TOKEN: ${process.env.INPUT_GITHUB_TOKEN}`)
-    console.log(`REPOSITORY: ${process.env.REPOSITORY}`)
-    console.log(`INPUT_REPOSITORY: ${process.env.INPUT_REPOSITORY}`)
-    console.log(`GITHUB_REPOSITORY: ${process.env.GITHUB_REPOSITORY}`)
+    const branchName = `fix-${context.sha.slice(0, 8)}`
+    await exec("git", ["checkout", "-b", branchName])
     await exec("git", "status")
     await exec("git", ["config", "user.email", "action@github.com"])
     await exec("git", ["config", "user.name", "GitHub Action"])
     await exec("git", "status")
     await exec("git", ["add", "."])
     await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
-    // await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, "HEAD:master"])
+    await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${branchName}`])
     // console.log(pullRequestId)
   }
 }
