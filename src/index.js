@@ -35,6 +35,10 @@ async function getPkg() {
 }
 
 async function main() {
+  for (const [key, value] of Object.entries(process.env)) {
+    console.log(`${key}: ${value}`)
+  }
+
   const info = {
     pkg: await getPkg(),
   }
@@ -118,9 +122,6 @@ async function main() {
     // })
     // const readmeContent = await fsp.readFile("readme.md")
     // await fsp.outputFile("readme.md", `${readmeContent}1`)
-    for (const [key, value] of Object.entries(process.env)) {
-      console.log(`${key}: ${value}`)
-    }
     console.log(`GITHUB_ACTOR: ${process.env.GITHUB_ACTOR}`)
     console.log(`INPUT_GITHUB_TOKEN: ${process.env.INPUT_GITHUB_TOKEN}`)
     console.log(`REPOSITORY: ${process.env.REPOSITORY}`)
