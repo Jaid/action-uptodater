@@ -41,6 +41,9 @@ async function main() {
   for (const [key, value] of Object.entries(context)) {
     console.log(`context.${key}: ${value}`)
   }
+  for (const [key, value] of Object.entries(context.payload)) {
+    console.log(`context.payload.${key}: ${value}`)
+  }
   const info = {
     pkg: await getPkg(),
   }
@@ -104,7 +107,8 @@ async function main() {
     if (!shouldPush) {
       return
     }
-    const {owner, repo} = context.repo
+    const newBranch = `fix-${context.sha.slice(0, 8)}`
+    console.log(`New branch: ${newBranch}`)
     for (const fix of fixes) {
       console.log(`Change ${fix.fileName}`)
       await fsp.outputFile(fix.fileName, fix.newContent)
