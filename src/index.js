@@ -9,7 +9,7 @@ import zahl from "zahl"
 import fsp from "@absolunet/fsp"
 import octokitCreatePullRequest from "octokit-create-pull-request"
 import Octokit from "@octokit/rest"
-import hasContent from "has-content"
+import hasContent, {isEmpty} from "has-content"
 
 /**
  * @type {Object<string, import("./rules/Rule").default>}
@@ -53,6 +53,9 @@ async function main() {
   const relevantRules = pick(rules, relevantRuleNames)
   let passedTests = 0
   let failedTests = 0
+  /**
+   * @type {import("src/Fix").default[]}
+   */
   let fixes = []
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     let fixables = 0
@@ -88,9 +91,17 @@ async function main() {
     const token = getInput("token", {required: true})
     const totalTests = passedTests + failedTests
     setFailed(`Only ${passedTests}/${totalTests} tests passed`)
+    if (isEmpty(fixes)) {
+      return
+    }
+    const shouldPush = getInput("push", {required: true})
+    if (!shouldPush) {
+      return
+    }
     const {owner, repo} = context.repo
-    if (hasContent(fixes)) {
-      console.log("HAS FIXES")
+    for (const fix of fixes) {
+      console.log(`Change ${fix.fileName}`)
+      await fsp.outputFile(fix.fileName, fix.newContent)
     }
     // const pullRequestId = await octokit.createPullRequest({
     //   owner,
@@ -105,8 +116,9 @@ async function main() {
     //     },
     //   },
     // })
-    const readmeContent = await fsp.readFile("readme.md")
-    await fsp.outputFile("readme.md", `${readmeContent}1`)
+    // const readmeContent = await fsp.readFile("readme.md")
+    // await fsp.outputFile("readme.md", `${readmeContent}1`)
+
     console.log(`GITHUB_ACTOR: ${process.env.GITHUB_ACTOR}`)
     console.log(`INPUT_GITHUB_TOKEN: ${process.env.INPUT_GITHUB_TOKEN}`)
     console.log(`REPOSITORY: ${process.env.REPOSITORY}`)
