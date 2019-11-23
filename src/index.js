@@ -122,10 +122,10 @@ async function main() {
     await exec("git", ["add", "."])
     await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${branchName}`])
-    const octocat = new GitHub(token)
+    const octokit = new GitHub(token)
     const sha7 = context.sha.slice(0, 8)
     const autoApprove = getInput("approve", {required: true})
-    const pullCreateResult = await octocat.pulls.create({
+    const pullCreateResult = await octokit.pulls.create({
       ...context.repo,
       title: "test",
       body: pullBody({
@@ -135,6 +135,7 @@ async function main() {
         sha: context.sha,
         actionRepo: "Jaid/action-node-boilerplate",
         actionPage: "https://github.com/marketplace/actions/validate-boilerplate-code",
+        branch: branchName,
       }),
       head: branchName,
       base: "master",
@@ -142,10 +143,14 @@ async function main() {
     if (!autoApprove) {
       return
     }
-    await octocat.pulls.merge({
+    await octokit.pulls.merge({
       ...context.repo,
       pull_number: pullCreateResult.data.number,
       commit_title: `Automatically merged boilerplate update from #${pullCreateResult.data.number}`,
+    })
+    await octokit.git.deleteRef({
+      ...context.repo,
+      ref: branchName,
     })
   }
 }
