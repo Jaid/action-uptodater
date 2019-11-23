@@ -11,6 +11,8 @@ import octokitCreatePullRequest from "octokit-create-pull-request"
 import Octokit from "@octokit/rest"
 import hasContent, {isEmpty} from "has-content"
 
+import pullBody from "./pullBody.hbs"
+
 /**
  * @type {Object<string, import("./rules/Rule").default>}
  */
@@ -121,10 +123,17 @@ async function main() {
     await exec("git", ["commit", "--all", "--message", "Automated Test Commit"])
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${branchName}`])
     const octocat = new GitHub(token)
+    const sha7 = context.sha.slice(0, 8)
     await octocat.pulls.create({
       ...context.repo,
       title: "test",
-      body: "123",
+      body: pullBody({
+        ...context.repo,
+        sha7,
+        sha: context.sha,
+        actionRepo: "Jaid/action-node-boilerplate",
+        actionPage: "https://github.com/marketplace/actions/validate-boilerplate-code",
+      }),
       head: branchName,
       base: "master",
     })
