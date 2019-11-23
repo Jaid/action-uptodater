@@ -142,12 +142,11 @@ async function main() {
     if (!autoApprove) {
       return
     }
-    // await octocat.pulls.merge({
-
-    // })
-    for (const [key, value] of Object.entries(pullCreateResult.data)) {
-      console.log(`data.${key}: ${value}`)
-    }
+    await octocat.pulls.merge({
+      ...context.repo,
+      pull_number: pullCreateResult.data.number,
+      commit_title: `Automatically merged boilerplate update from #${pullCreateResult.data.number}`,
+    })
   }
 }
 
