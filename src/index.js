@@ -9,6 +9,7 @@ import zahl from "zahl"
 import fsp from "@absolunet/fsp"
 import isGitRepoDirty from "is-git-repo-dirty"
 import hasContent, {isEmpty} from "has-content"
+import chalk from "chalk"
 
 import pullBody from "./pullBody.hbs"
 
@@ -154,7 +155,8 @@ async function main() {
       head: branchName,
       base: "master",
     })
-    console.log(`Pull created: https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${pullCreateResult.data.number}`)
+    const greenPullLink = chalk.greenBright(`https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${pullCreateResult.data.number}`)
+    console.log(`Pull created: ${greenPullLink}`)
     if (!autoApprove) {
       return
     }

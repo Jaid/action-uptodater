@@ -8,7 +8,7 @@ export default class Fix {
   fileName = null
 
   /**
-   * @type {string}
+   * @type {string|boolean}
    */
   newContent = null
 
@@ -23,7 +23,11 @@ export default class Fix {
   }
 
   async apply() {
-    await fsp.outputFile(this.fileName, this.newContent)
+    if (this.newContent === false) {
+      await fsp.unlink(this.fileName)
+    } else {
+      await fsp.outputFile(this.fileName, this.newContent)
+    }
   }
 
 }

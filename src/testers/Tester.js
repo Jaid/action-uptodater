@@ -26,8 +26,8 @@ export default class Tester {
   fixes = []
 
   setName(ansiName) {
-    this.name = stripAnsi(ansiName)
     this.ansiName = ansiName
+    this.name = stripAnsi(ansiName)
   }
 
   setFunction(testFunction) {
