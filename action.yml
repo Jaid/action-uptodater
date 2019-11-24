@@ -1,4 +1,4 @@
-name: Validate boilerplate code
+name: Uptodater
 description: Validates that my Node projects still use up-to-date boilerplate code.
 author: Jaid
 inputs:

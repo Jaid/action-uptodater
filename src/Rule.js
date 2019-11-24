@@ -7,9 +7,26 @@ import fsp from "@absolunet/fsp"
 export default class {
 
   /**
-   * @type {import("../testers/Tester").default[]}
+   * @type {import("src/Tester").default[]}
    */
   testers = []
+
+  /**
+   * @type {string}
+   */
+  id = null
+
+  /**
+   * @type {string}
+   */
+  title = null
+
+  getTitle() {
+    if (hasContent(this.title)) {
+      return this.title
+    }
+    return this.id
+  }
 
   isRelevantToRepo() {
     return true

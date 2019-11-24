@@ -27,7 +27,9 @@ const rules = {}
 const rulesRequire = require.context("./rules/", true, /index.js$/)
 for (const value of rulesRequire.keys()) {
   const {ruleName} = value.match(/[/\\](?<ruleName>.+?)[/\\]index\.js$/).groups
-  rules[ruleName] = new rulesRequire(value).default
+  const rule = new rulesRequire(value).default
+  rule.id = ruleName
+  rules[ruleName] = rule
 }
 
 console.log(`${zahl(Object.keys(rules).length, "rule")} loaded`)
@@ -43,15 +45,6 @@ async function getPkg() {
 }
 
 async function main() {
-  // for (const [key, value] of Object.entries(process.env)) {
-  //   console.log(`${key}: ${value}`)
-  // }
-  // for (const [key, value] of Object.entries(context)) {
-  //   console.log(`context.${key}: ${value}`)
-  // }
-  // for (const [key, value] of Object.entries(context.payload)) {
-  //   console.log(`context.payload.${key}: ${value}`)
-  // }
   const projectInfo = {
     pkg: await getPkg(),
   }
@@ -156,7 +149,7 @@ async function main() {
         sha7,
         autoApprove,
         sha: context.sha,
-        actionRepo: "Jaid/action-node-boilerplate",
+        actionRepo: "Jaid/action-uptodater",
         actionPage: "https://github.com/marketplace/actions/validate-boilerplate-code",
         branch: branchName,
       }),
