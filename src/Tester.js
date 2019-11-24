@@ -38,8 +38,12 @@ export default class {
     return hasContent(this.fixes)
   }
 
-  async run() {
-    const result = await this.test()
+  /**
+   * @param {import("./index").ProjectInfo} projectInfo
+   * @return {Promise<boolean>}
+   */
+  async run(projectInfo) {
+    const result = await this.test(projectInfo)
     if (result !== true) {
       if (isFunction(this.collectFixes)) {
         this.collectFixes()

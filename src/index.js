@@ -10,8 +10,14 @@ import fsp from "@absolunet/fsp"
 import isGitRepoDirty from "is-git-repo-dirty"
 import hasContent, {isEmpty} from "has-content"
 import chalk from "chalk"
+import readPackageJson from "read-package-json-fast"
 
 import pullBody from "./pullBody.hbs"
+
+/**
+ * @typedef {Object} ProjectInfo
+ * @prop {Object} pkg
+ */
 
 /**
  * @type {Object<string, import("./rules/Rule").default>}
@@ -32,7 +38,7 @@ async function getPkg() {
   if (!exists) {
     return null
   }
-  const pkg = await fsp.readJson(file)
+  const pkg = await readPackageJson(file)
   return pkg
 }
 
@@ -46,7 +52,7 @@ async function main() {
   // for (const [key, value] of Object.entries(context.payload)) {
   //   console.log(`context.payload.${key}: ${value}`)
   // }
-  const info = {
+  const projectInfo = {
     pkg: await getPkg(),
   }
   const relevantRuleNames = []
@@ -55,7 +61,9 @@ async function main() {
       console.debug("Rule %s does not have a isRelevantToRepo function, this is probably unintended", ruleName)
       continue
     }
-    const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo)
+    // TODO: Add argument forwarding to resolve-any
+    // const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo)
+    const isRelevantToRepo = rule.isRelevantToRepo(projectInfo)
     if (isRelevantToRepo) {
       relevantRuleNames.push(ruleName)
     }
@@ -77,7 +85,7 @@ async function main() {
       }
       console.log(`Rule ${ruleName} (${zahl(rule.testers, "tester")})`)
       for (const tester of rule.testers) {
-        const result = await tester.run()
+        const result = await tester.run(projectInfo)
         if (result === false) {
           failedTests++
           if (hasContent(tester.collectFixes)) {

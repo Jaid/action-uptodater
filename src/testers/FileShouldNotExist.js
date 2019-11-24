@@ -18,6 +18,10 @@ export default class extends Tester {
     this.setName(`${chalk.yellow(this.shortFile)} should not exist`)
   }
 
+  /**
+   * @param {import("src/index").ProjectInfo} projectInfo
+   * @return {Promise<Pick<boolean, string>>}
+   */
   async test() {
     const exists = await fsp.pathExists(this.file)
     if (exists) {
