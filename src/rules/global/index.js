@@ -5,6 +5,8 @@ import Rule from "src/Rule"
 
 export default new class extends Rule {
 
+  title = "General"
+
   constructor() {
     super()
     this.testers = [
