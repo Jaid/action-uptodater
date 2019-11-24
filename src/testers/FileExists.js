@@ -1,7 +1,7 @@
 import path from "path"
 
 import fsp from "@absolunet/fsp"
-import Tester from "src/testers/Tester"
+import Tester from "src/Tester"
 import chalk from "chalk"
 
 export default class extends Tester {

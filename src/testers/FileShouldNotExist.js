@@ -1,7 +1,7 @@
 import path from "path"
 
 import fsp from "@absolunet/fsp"
-import Tester from "src/testers/Tester"
+import Tester from "src/Tester"
 import chalk from "chalk"
 
 export default class extends Tester {
@@ -15,20 +15,20 @@ export default class extends Tester {
     super()
     this.file = path.resolve(file)
     this.shortFile = file
-    this.setName(`${chalk.yellow(this.shortFile)} should exist and have content`)
+    this.setName(`${chalk.yellow(this.shortFile)} should not exist`)
   }
 
   async test() {
     const exists = await fsp.pathExists(this.file)
-    if (!exists) {
-      return `${this.shortFile} does not exist`
-    }
-    const stat = await fsp.stat(this.file)
-    const bytes = stat.size
-    if (!bytes) {
-      return `${this.shortFile} does exist, but it empty`
+    if (exists) {
+      return `${this.shortFile} does exist`
     }
     return true
   }
+
+  collectFixes() {
+    this.addFix(this.shortFile, false)
+  }
+
 
 }

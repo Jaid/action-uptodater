@@ -5,7 +5,7 @@ import Fix from "src/Fix"
 import {isString, isFunction} from "lodash"
 import hasContent from "has-content"
 
-export default class Tester {
+export default class {
 
   /**
    * @type {string}

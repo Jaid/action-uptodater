@@ -4,7 +4,7 @@ import hasContent, {isEmpty} from "has-content"
 import hasha from "hasha"
 import fsp from "@absolunet/fsp"
 
-export default class Rule {
+export default class {
 
   /**
    * @type {import("../testers/Tester").default[]}
