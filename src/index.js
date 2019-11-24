@@ -14,6 +14,9 @@ import readPackageJson from "read-package-json-fast"
 
 import pullBody from "./pullBody.hbs"
 
+// GitHub Actions CI supports color, chalk just does not know that
+chalk.level = chalk.Level.Ansi256
+
 /**
  * @typedef {Object} ProjectInfo
  * @prop {Object} pkg
@@ -56,7 +59,7 @@ async function main() {
     }
     // TODO: Add argument forwarding to resolve-any
     // const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo)
-    const isRelevantToRepo = rule.isRelevantToRepo(projectInfo)
+    const isRelevantToRepo = await rule.isRelevantToRepo(projectInfo)
     if (isRelevantToRepo) {
       relevantRuleNames.push(ruleName)
     }
@@ -79,7 +82,7 @@ async function main() {
         console.log("Rule does not have any testers, skipping")
         continue
       }
-      console.log(`Rule ${rule.getTitle()} (${zahl(rule.testers, "tester")})`)
+      console.log(chalk.yellow(`Rule ${rule.getTitle()} (${zahl(rule.testers, "tester")})`))
       for (const tester of rule.testers) {
         const result = await tester.run(projectInfo)
         if (result === false) {

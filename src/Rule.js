@@ -28,7 +28,10 @@ export default class {
     return this.id
   }
 
-  isRelevantToRepo() {
+  /**
+ * @
+ */
+  isRelevantToRepo(projectInfo) {
     return true
   }
 
