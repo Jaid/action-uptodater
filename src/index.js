@@ -70,11 +70,11 @@ async function main() {
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     let fixables = 0
     try {
-      console.log(`Rule ${ruleName} (${zahl(rule.testers, "tester")})`)
       if (!rule.hasTesters()) {
         console.log("Rule does not have any testers, skipping")
         continue
       }
+      console.log(`Rule ${ruleName} (${zahl(rule.testers, "tester")})`)
       for (const tester of rule.testers) {
         const result = await tester.run()
         if (result === false) {
