@@ -2,7 +2,7 @@ import path from "path"
 
 import resolveAny from "resolve-any"
 import {pick, isFunction} from "lodash"
-import {setFailed, startGroup, endGroup, getInput} from "@actions/core"
+import {setFailed, getInput} from "@actions/core"
 import {context, GitHub} from "@actions/github"
 import {exec} from "@actions/exec"
 import zahl from "zahl"
@@ -70,7 +70,7 @@ async function main() {
   for (const [ruleName, rule] of Object.entries(relevantRules)) {
     let fixables = 0
     try {
-      startGroup(`Rule ${ruleName}`)
+      console.log(`Rule ${ruleName} (${zahl(rule.testers, "tester")})`)
       if (!rule.hasTesters()) {
         console.log("Rule does not have any testers, skipping")
         continue
@@ -95,7 +95,6 @@ async function main() {
       console.error(`Processing rule ${ruleName} failed`)
       console.error(error)
     }
-    endGroup()
   }
   if (failedTests) {
     const token = getInput("token", {required: true})
