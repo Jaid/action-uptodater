@@ -3,6 +3,7 @@ import figures from "figures"
 import chalk from "chalk"
 import Fix from "src/Fix"
 import {isString} from "lodash"
+import hasContent from "has-content"
 
 export default class Tester {
 
@@ -31,6 +32,10 @@ export default class Tester {
 
   setFunction(testFunction) {
     this.test = testFunction
+  }
+
+  hasFix() {
+    return hasContent(this.fixes)
   }
 
   async run() {
