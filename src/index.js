@@ -43,7 +43,7 @@ async function getPkg() {
   if (!exists) {
     return null
   }
-  const pkg = await readPackageJson(file)
+  const pkg = await fsp.readJson(file)
   return pkg
 }
 
