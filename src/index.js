@@ -175,5 +175,5 @@ async function main() {
 
 main().catch(error => {
   console.error(error)
-  setFailed("jaid/action-node-boilerplate failed")
+  setFailed("jaid/action-uptodater failed")
 })
