@@ -61,7 +61,10 @@ async function main() {
       relevantRuleNames.push(ruleName)
     }
   }
-  console.log(`Matching rules: ${relevantRuleNames.join(" ")}`)
+  console.log(`Matching rules: ${relevantRuleNames.join(", ")}`)
+  /**
+   * @type {Object<string, import("src/Rule").default>}
+   */
   const relevantRules = pick(rules, relevantRuleNames)
   let passedTests = 0
   let failedTests = 0
@@ -76,7 +79,7 @@ async function main() {
         console.log("Rule does not have any testers, skipping")
         continue
       }
-      console.log(`Rule ${ruleName} (${zahl(rule.testers, "tester")})`)
+      console.log(`Rule ${rule.getTitle()} (${zahl(rule.testers, "tester")})`)
       for (const tester of rule.testers) {
         const result = await tester.run(projectInfo)
         if (result === false) {
