@@ -1,14 +1,14 @@
 import path from "path"
 
 import resolveAny from "resolve-any"
-import {pick, isFunction} from "lodash"
+import {pick} from "lodash"
 import {setFailed, getInput} from "@actions/core"
 import {context, GitHub} from "@actions/github"
 import {exec} from "@actions/exec"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
 import isGitRepoDirty from "is-git-repo-dirty"
-import {isEmpty} from "has-content"
+import hasContent, {isEmpty} from "has-content"
 
 import pullBody from "./pullBody.hbs"
 
@@ -79,8 +79,7 @@ async function main() {
         const result = await tester.run()
         if (result === false) {
           failedTests++
-          if (isFunction(tester.collectFixes)) {
-            tester.collectFixes()
+          if (hasContent(tester.collectFixes)) {
             fixables += tester.fixes.length
             if (fixables > 0) {
               fixes = [...fixes, ...tester.fixes]

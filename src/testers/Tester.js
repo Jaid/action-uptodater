@@ -2,7 +2,7 @@ import stripAnsi from "strip-ansi"
 import figures from "figures"
 import chalk from "chalk"
 import Fix from "src/Fix"
-import {isString} from "lodash"
+import {isString, isFunction} from "lodash"
 import hasContent from "has-content"
 
 export default class Tester {
@@ -41,6 +41,9 @@ export default class Tester {
   async run() {
     const result = await this.test()
     if (result !== true) {
+      if (isFunction(this.collectFixes)) {
+        this.collectFixes()
+      }
       const icon = this.hasFix() ? "🔧" : chalk.red(figures.cross)
       console.log(`${icon} ${this.ansiName}`)
       if (isString(result)) {
