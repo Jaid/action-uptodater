@@ -36,7 +36,8 @@ export default class Tester {
   async run() {
     const result = await this.test()
     if (result !== true) {
-      console.log(`${chalk.red(figures.cross)} ${this.ansiName}`)
+      const icon = this.hasFix() ? "🔧" : chalk.red(figures.cross)
+      console.log(`${icon} ${this.ansiName}`)
       if (isString(result)) {
         console.log(result)
       }
