@@ -62,6 +62,9 @@ async function main() {
     return isRelevantToRepo
   })
   console.log(`Selected rules: ${relevantRules.map(rule => rule.id)}`)
+  for (const rule of rules) {
+    console.log(chalk.yellow(`Rule ${rule.getTitle()} (${zahl(rule.testers, "tester")})`))
+  }
 }
 
 main().catch(error => {
