@@ -40,6 +40,7 @@ export default class Fix {
       await exec("git", ["checkout", "-b", branchName])
       await exec("git", ["config", "user.email", "action@github.com"])
       await exec("git", ["config", "user.name", "GitHub Action"])
+      Fix.branchCreated = true
     }
     const isDirtyNow = await isGitRepoDirty()
     if (!isDirtyNow) {
