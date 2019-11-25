@@ -1,8 +1,6 @@
-import path from "path"
 
-import hasContent, {isEmpty} from "has-content"
-import hasha from "hasha"
-import fsp from "@absolunet/fsp"
+import hasContent from "has-content"
+import icons from "lib/consoleIcons"
 
 export default class {
 
@@ -30,6 +28,20 @@ export default class {
    * @type {number}
    */
   failedTests = 0
+
+  /**
+   * @type {string}
+   */
+  consoleIcon = icons.pass
+
+  incrementPassedTests() {
+    this.passedTests++
+  }
+
+  incrementFailedTests() {
+    this.consoleIcon = icons.fail
+    this.failedTests++
+  }
 
   getTitle() {
     if (hasContent(this.title)) {

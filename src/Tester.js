@@ -1,9 +1,8 @@
 import stripAnsi from "strip-ansi"
-import figures from "figures"
-import chalk from "chalk"
 import Fix from "src/Fix"
 import {isString, isFunction} from "lodash"
 import hasContent from "has-content"
+import icons from "lib/consoleIcons"
 
 export default class {
 
@@ -26,6 +25,11 @@ export default class {
    * @type {string} An optional message for test failures
    */
   message = null
+
+  /**
+   * @type {string}
+   */
+  consoleIcon = icons.fail
 
   /**
    * @type {Function}
@@ -60,26 +64,26 @@ export default class {
   async run(projectInfo) {
     const result = await this.test(projectInfo)
     if (result !== true) {
-      let icon = chalk.red(figures.cross)
       if (projectInfo.shouldFix) {
         if (isFunction(this.collectFixes)) {
           this.collectFixes()
         }
-        for (const fix of this.fixes) {
-          await fix.apply()
+        if (hasContent(this.fixes)) {
+          for (const fix of this.fixes) {
+            await fix.apply()
+          }
+          this.consoleIcon = icons.fix
         }
-        icon = "🔧"
       }
-      // console.log(`${icon} ${this.ansiTitle}`)
       if (isString(result)) {
         this.message = result
       }
-      this.rule.failedTests++
+      this.rule.incrementFailedTests()
       return false
     }
-    // console.log(`${chalk.green(figures.tick)} ${this.ansiTitle}`)
     this.passed = true
-    this.rule.passedTests++
+    this.consoleIcon = icons.pass
+    this.rule.incrementPassedTests()
     return true
   }
 
