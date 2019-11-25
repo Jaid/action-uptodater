@@ -111,8 +111,8 @@ async function main() {
       setFailed(failedMessage)
       return
     }
-    const shouldPush = getInput("push", {required: true})
-    if (!shouldPush) {
+    const shouldFix = getInput("fix", {required: true})
+    if (!shouldFix) {
       setFailed(failedMessage)
       return
     }

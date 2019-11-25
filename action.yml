@@ -5,7 +5,7 @@ inputs:
   token:
     description: Repository token for allowing the action to make commits.
     required: true
-  push:
+  fix:
     description: If true, automatically tries to fix some files and commit them to a pull request
     default: false
     required: true
