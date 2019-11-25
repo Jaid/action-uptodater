@@ -86,11 +86,11 @@ async function main() {
     endGroup()
   }
   // Nested group test
-  group("A", () => {
-    group("B", () => {
-      info("C")
-    })
-  })
+  console.group("A")
+  console.group("B")
+  console.log("C")
+  console.groupEnd()
+  console.groupEnd()
 }
 
 main().catch(error => {
