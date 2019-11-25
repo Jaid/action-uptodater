@@ -45,10 +45,16 @@ export default class {
   async run(projectInfo) {
     const result = await this.test(projectInfo)
     if (result !== true) {
-      if (isFunction(this.collectFixes)) {
-        this.collectFixes()
+      let icon = chalk.red(figures.cross)
+      if (projectInfo.shouldFix) {
+        if (isFunction(this.collectFixes)) {
+          this.collectFixes()
+        }
+        for (const fix of this.fixes) {
+          await fix.apply()
+        }
+        icon = "🔧"
       }
-      const icon = this.hasFix() ? "🔧" : chalk.red(figures.cross)
       console.log(`${icon} ${this.ansiName}`)
       if (isString(result)) {
         console.log(result)

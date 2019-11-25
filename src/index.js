@@ -21,6 +21,7 @@ chalk.level = chalk.Level.Ansi256
 /**
  * @typedef {Object} ProjectInfo
  * @prop {Object} pkg
+ * @prop {boolean} shouldFix
  */
 
 /**
@@ -51,6 +52,7 @@ async function getPkg() {
 async function main() {
   const projectInfo = {
     pkg: await getPkg(),
+    shouldFix: Boolean(getInput("fix", {required: true})),
   }
   /**
    * @type {import("src/Rule").default[]}
@@ -61,9 +63,26 @@ async function main() {
     const isRelevantToRepo = await rule.isRelevantToRepo(projectInfo)
     return isRelevantToRepo
   })
-  console.log(`Selected rules: ${relevantRules.map(rule => rule.id)}`)
+  // let passedTests = 0
+  let failedTests = 0
+  console.log(`Selected rules: ${relevantRules.map(rule => rule.id).join(", ")}`)
   for (const rule of rules) {
     console.log(chalk.yellow(`Rule ${rule.getTitle()} (${zahl(rule.testers, "tester")})`))
+    for (const tester of rule.testers) {
+      const result = await tester.run(projectInfo)
+      if (result === false) {
+        failedTests++
+        if (tester.fixes) {
+        //   fixables += tester.fixes.length
+        //   if (fixables > 0) {
+        //     fixes = [...fixes, ...tester.fixes]
+        //   }
+        //   console.log(`This tester registered ${zahl(fixables, "possible fix")}`)
+        // }
+        // continue
+        }
+      }
+    }
   }
 }
 
