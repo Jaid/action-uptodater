@@ -24,8 +24,10 @@ export default class Fix {
 
   async apply() {
     if (this.newContent === false) {
+      console.log(`Delete ${this.fileName}`)
       await fsp.unlink(this.fileName)
     } else {
+      console.log(`Modify ${this.fileName}`)
       await fsp.outputFile(this.fileName, this.newContent)
     }
   }
