@@ -23,6 +23,11 @@ export default class {
   rule = null
 
   /**
+   * @type {string} An optional message for test failures
+   */
+  message = null
+
+  /**
    * @type {Function}
    * This should be overriden
    */
@@ -65,14 +70,14 @@ export default class {
         }
         icon = "🔧"
       }
-      console.log(`${icon} ${this.ansiTitle}`)
+      // console.log(`${icon} ${this.ansiTitle}`)
       if (isString(result)) {
-        console.log(result)
+        this.message = result
       }
       this.rule.failedTests++
       return false
     }
-    console.log(`${chalk.green(figures.tick)} ${this.ansiTitle}`)
+    // console.log(`${chalk.green(figures.tick)} ${this.ansiTitle}`)
     this.passed = true
     this.rule.passedTests++
     return true

@@ -91,7 +91,7 @@ async function main() {
     startGroup(color(`${rule.getTitle()} (${rule.passedTests}/${totalTests})`))
     for (const tester of rule.testers) {
       const testerColor = tester.passed ? chalk.green : chalk.redBright
-      const testerLine = testerColor(tester.title)
+      const testerLine = testerColor(tester.ansiTitle)
       console.log(testerLine)
     }
     endGroup()
