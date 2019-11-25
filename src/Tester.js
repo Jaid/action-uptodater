@@ -22,9 +22,9 @@ export default class {
   rule = null
 
   /**
-   * @type {string} An optional message for test failures
+   * @type {string} Explanation of why the test failed
    */
-  message = null
+  message = "Failed"
 
   /**
    * @type {string}

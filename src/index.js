@@ -2,7 +2,7 @@ import path from "path"
 
 import resolveAny from "resolve-any"
 import {pick} from "lodash"
-import {setFailed, getInput, startGroup, endGroup} from "@actions/core"
+import {setFailed, getInput, startGroup, endGroup, group, info} from "@actions/core"
 import {context, GitHub} from "@actions/github"
 import {exec} from "@actions/exec"
 import zahl from "zahl"
@@ -78,11 +78,19 @@ async function main() {
       startGroup(testerLine)
       if (tester.passed) {
         console.log("Passed!")
+      } else if (!tester.hasFix()) {
+        console.log(tester.message)
       }
       endGroup()
     }
     endGroup()
   }
+  // Nested group test
+  group("A", () => {
+    group("B", () => {
+      info("C")
+    })
+  })
 }
 
 main().catch(error => {
