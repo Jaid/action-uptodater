@@ -11,6 +11,7 @@ import isGitRepoDirty from "is-git-repo-dirty"
 import hasContent, {isEmpty} from "has-content"
 import chalk from "chalk"
 import pFilter from "p-filter"
+import figures from "figures"
 
 import pullBody from "./pullBody.hbs"
 
@@ -87,12 +88,14 @@ async function main() {
   for (const rule of rules) {
     const totalTests = rule.passedTests + rule.failedTests
     const isRulePassed = rule.failedTests === 0
-    const color = isRulePassed ? chalk.green : chalk.redBright
-    startGroup(color(`${rule.getTitle()} (${rule.passedTests}/${totalTests})`))
+    const ruleIcon = isRulePassed ? chalk.green(figures.tick) : chalk.red(figures.cross)
+    startGroup(`${ruleIcon} ${rule.getTitle()} (${rule.passedTests}/${totalTests})`)
     for (const tester of rule.testers) {
-      const testerColor = tester.passed ? chalk.green : chalk.redBright
-      const testerLine = testerColor(tester.ansiTitle)
-      console.log(testerLine)
+      if (tester.passed) {
+        console.log(`${chalk.green(figures.tick)} ${tester.ansiTitle}`)
+        continue
+      }
+      console.log(`${chalk.red(figures.cross)} ${tester.ansiTitle}`)
     }
     endGroup()
   }
