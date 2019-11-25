@@ -19,7 +19,7 @@ export default class extends Tester {
     super()
     this.field = field
     this.expectedValue = value
-    this.setName(`pkg.${field} should be ${json5.stringify(value)}`)
+    this.setTitle(`pkg.${field} should be ${json5.stringify(value)}`)
   }
 
   /**

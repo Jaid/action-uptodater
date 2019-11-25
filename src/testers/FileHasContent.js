@@ -15,7 +15,7 @@ export default class extends Tester {
     super()
     this.file = path.resolve(file)
     this.shortFile = file
-    this.setName(`${chalk.yellow(this.shortFile)} should exist and have content`)
+    this.setTitle(`${chalk.yellow(this.shortFile)} should exist and have content`)
   }
 
   /**

@@ -24,7 +24,6 @@
     "read-package-json-fast": "^1.0.3",
     "resolve-any": "^1.0.0",
     "strip-ansi": "^6.0.0",
-    "treeify": "^1.1.0",
     "zahl": "^2.0.1"
   },
   "devDependencies": {

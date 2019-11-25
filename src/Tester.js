@@ -10,7 +10,7 @@ export default class {
   /**
    * @type {string}
    */
-  name = "Tester"
+  title = "Tester"
 
   /**
    * @type {boolean}
@@ -35,9 +35,9 @@ export default class {
    */
   fixes = []
 
-  setName(ansiName) {
-    this.ansiName = ansiName
-    this.name = stripAnsi(ansiName)
+  setTitle(ansiTitle) {
+    this.ansiTitle = ansiTitle
+    this.title = stripAnsi(ansiTitle)
   }
 
   setFunction(testFunction) {
@@ -65,14 +65,14 @@ export default class {
         }
         icon = "🔧"
       }
-      console.log(`${icon} ${this.ansiName}`)
+      console.log(`${icon} ${this.ansiTitle}`)
       if (isString(result)) {
         console.log(result)
       }
       this.rule.failedTests++
       return false
     }
-    console.log(`${chalk.green(figures.tick)} ${this.ansiName}`)
+    console.log(`${chalk.green(figures.tick)} ${this.ansiTitle}`)
     this.passed = true
     this.rule.passedTests++
     return true

@@ -25,7 +25,7 @@ export default class extends Tester {
     })
     this.file = path.resolve(file)
     this.shortFile = file
-    this.setName(`${chalk.yellow(this.shortFile)} should have md5 ${chalk.yellow(this.expectedHash)}`)
+    this.setTitle(`${chalk.yellow(this.shortFile)} should have md5 ${chalk.yellow(this.expectedHash)}`)
   }
 
   /**
