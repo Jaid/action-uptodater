@@ -9,12 +9,10 @@ export default new class extends Rule {
 
   constructor() {
     super()
-    this.testers = [
-      new FileExact("license.txt", require("./license.txt").default),
-      new FileExact(".editorconfig", require("./editorconfig.txt").default),
-      new FileHasContent("readme.md"),
-      new FileShouldNotExist(".travis.yml"),
-    ]
+    this.addTester(new FileExact("license.txt", require("./license.txt").default))
+    this.addTester(new FileExact(".editorconfig", require("./editorconfig.txt").default))
+    this.addTester(new FileHasContent("readme.md"))
+    this.addTester(new FileShouldNotExist(".travis.yml"))
   }
 
 }

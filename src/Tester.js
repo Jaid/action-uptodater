@@ -13,6 +13,16 @@ export default class {
   name = "Tester"
 
   /**
+   * @type {boolean}
+   */
+  passed = false
+
+  /**
+   * @type {import("src/Rule").default}
+   */
+  rule = null
+
+  /**
    * @type {Function}
    * This should be overriden
    */
@@ -59,9 +69,12 @@ export default class {
       if (isString(result)) {
         console.log(result)
       }
+      this.rule.failedTests++
       return false
     }
     console.log(`${chalk.green(figures.tick)} ${this.ansiName}`)
+    this.passed = true
+    this.rule.passedTests++
     return true
   }
 

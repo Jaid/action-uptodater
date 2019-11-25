@@ -16,7 +16,7 @@ export default new class extends Rule {
 
   constructor() {
     super()
-    this.testers = [new FileHasContent("webpack.config.babel.js")]
+    this.addTester(new FileHasContent("webpack.config.babel.js"))
   }
 
 }

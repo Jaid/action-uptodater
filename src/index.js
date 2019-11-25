@@ -2,7 +2,7 @@ import path from "path"
 
 import resolveAny from "resolve-any"
 import {pick} from "lodash"
-import {setFailed, getInput} from "@actions/core"
+import {setFailed, getInput, startGroup, endGroup} from "@actions/core"
 import {context, GitHub} from "@actions/github"
 import {exec} from "@actions/exec"
 import zahl from "zahl"
@@ -10,8 +10,8 @@ import fsp from "@absolunet/fsp"
 import isGitRepoDirty from "is-git-repo-dirty"
 import hasContent, {isEmpty} from "has-content"
 import chalk from "chalk"
-import readPackageJson from "read-package-json-fast"
 import pFilter from "p-filter"
+import treeify from "treeify"
 
 import pullBody from "./pullBody.hbs"
 
@@ -83,6 +83,13 @@ async function main() {
         }
       }
     }
+  }
+  console.log(chalk.bold("Summary:"))
+  for (const rule of rules) {
+    const totalTests = rule.passedTests + rule.failedTests
+    const isRulePassed = rule.failedTests === 0
+    const color = isRulePassed ? chalk.green : chalk.yellow
+    console.log(color(`${rule.getTitle()} (${rule.passedTests}/${totalTests})`))
   }
 }
 
