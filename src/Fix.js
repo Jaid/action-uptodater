@@ -5,7 +5,15 @@ import isGitRepoDirty from "is-git-repo-dirty"
 
 export default class Fix {
 
+  /**
+   * @type {boolean}
+   */
   static branchCreated = false
+
+  /**
+   * @type {number}
+   */
+  static commits = 0
 
   /**
    * @type {string}
@@ -48,6 +56,7 @@ export default class Fix {
     }
     await exec("git", ["add", "."])
     await exec("git", ["commit", "--all", "--message", `autofix: ${this.tester.name}`])
+    Fix.commits ++
   }
 
 }
