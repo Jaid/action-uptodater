@@ -39,11 +39,6 @@ export default class Fix {
    */
   hasBeenApplied = false
 
-  /**
-   * @type {string[]}
-   */
-  logMessages = []
-
   static async push() {
     if (Fix.commits === 0) {
       return
@@ -104,7 +99,7 @@ export default class Fix {
   }
 
   log(line) {
-    this.logMessages.push(line)
+    this.tester.logMessages.push(line)
   }
 
   async apply() {
