@@ -4,8 +4,8 @@ import hasContent from "has-content"
 import chalk from "chalk"
 import pFilter from "p-filter"
 import getPkg from "lib/getPkg"
-
 import getBooleanInput from "lib/getBooleanInput"
+
 import Fix from "./Fix"
 
 // GitHub Actions CI supports color, chalk just does not know that
@@ -82,7 +82,8 @@ async function main() {
     }
   }
   if (totalFailedTests !== 0) {
-    setFailed(`${zahl(totalFailedTests, "test")} did fail and could not automatically be fixed`)
+    const message = projectInfo.shouldFix ? `${zahl(totalFailedTests, "test")} did fail and could not automatically be fixed` : `${zahl(totalFailedTests, "test")} did fail and autofixing is disabled`
+    setFailed(message)
   }
 }
 
