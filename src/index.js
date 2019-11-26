@@ -72,9 +72,12 @@ async function main() {
   console.log(chalk.bold("Summary:"))
   for (const rule of rules) {
     const totalTests = rule.passedTests + rule.failedTests
-    console.log(`Rule: ${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${totalTests})`)
+    console.log(`${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${totalTests})`)
     for (const tester of rule.testers) {
       const testerLine = `${tester.consoleIcon} ${tester.ansiTitle}`
+      if (tester.hasFixApplied()) {
+
+      }
       startGroup(testerLine)
       if (tester.passed) {
         console.log("Passed!")
