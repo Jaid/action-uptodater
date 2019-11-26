@@ -103,18 +103,19 @@ export default class Fix {
   }
 
   async apply() {
+    this.log(this.getAnsiTitle())
     if (this.newContent === false) {
-      console.log(`Delete ${this.fileName}`)
       await fsp.unlink(this.fileName)
     } else {
-      console.log(`Modify ${this.fileName}`)
       await fsp.outputFile(this.fileName, this.newContent)
     }
     const isDirtyNow = await isGitRepoDirty()
     if (!isDirtyNow) {
       return
     }
-    await Fix.commit(`autofix: ${this.tester.title}`)
+    const commitMessage = `autofix: ${this.tester.title}`
+    this.log(`${chalk.gray("Commit:")} ${commitMessage}`)
+    await Fix.commit(commitMessage)
   }
 
   /**

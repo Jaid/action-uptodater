@@ -65,12 +65,6 @@ async function main() {
       for (const logMessage of tester.logMessages) {
         console.log(logMessage)
       }
-      for (const fix of tester.appliedFixes) {
-        console.log(`🧰 ${fix.getAnsiTitle()}`)
-        for (const logMessage of fix.logMessages) {
-          console.log(logMessage)
-        }
-      }
       endGroup()
     }
   }
