@@ -2,6 +2,8 @@
 
 Opinionated Action that validates the repository content's boilerplate code in the way I like to handle my NodeJS projects.
 
+:warning: Usage in production projects is not recommended yet. Feel free to use this action for inspiration and experimenting.
+
 ### Inputs
 
 Name|Default|Description
