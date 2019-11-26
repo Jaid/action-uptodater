@@ -72,7 +72,7 @@ async function main() {
   console.log(chalk.bold("Summary:"))
   for (const rule of rules) {
     const totalTests = rule.passedTests + rule.failedTests
-    startGroup(`${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${totalTests})`)
+    console.log(`Rule: ${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${totalTests})`)
     for (const tester of rule.testers) {
       const testerLine = `${tester.consoleIcon} ${tester.ansiTitle}`
       startGroup(testerLine)
@@ -83,14 +83,7 @@ async function main() {
       }
       endGroup()
     }
-    endGroup()
   }
-  // Nested group test
-  console.group("A")
-  console.group("B")
-  console.log("C")
-  console.groupEnd()
-  console.groupEnd()
 }
 
 main().catch(error => {
