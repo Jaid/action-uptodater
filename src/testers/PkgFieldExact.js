@@ -39,7 +39,7 @@ export default class extends Tester {
     if (isEmpty(this.pkg)) {
       return "package.json has no content"
     }
-    const actualValue = this[this.field]
+    const actualValue = this.pkg[this.field]
     if (actualValue === undefined) {
       return `package.json has no key ${this.field}`
     }
