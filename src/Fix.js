@@ -59,7 +59,7 @@ export default class Fix {
         autoApprove,
         sha: context.sha,
         actionRepo: "Jaid/action-uptodater",
-        actionPage: "https://github.com/marketplace/actions/validate-boilerplate-code",
+        actionPage: "https://github.com/marketplace/actions/uptodater",
         branch: Fix.branchName,
       }),
       head: Fix.branchName,
