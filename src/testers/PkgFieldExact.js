@@ -51,6 +51,9 @@ export default class extends Tester {
   }
 
   collectFixes() {
+    if (this.pkg === null) {
+      return
+    }
     this.pkg[this.field] = this.expectedValue
     this.addFix("package.json", JSON.stringify(this.pkg))
   }
