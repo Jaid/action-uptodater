@@ -74,15 +74,18 @@ async function main() {
     const totalTests = rule.passedTests + rule.failedTests
     console.log(`${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${totalTests})`)
     for (const tester of rule.testers) {
-      const testerLine = `${tester.consoleIcon} ${tester.ansiTitle}`
-      if (tester.hasFixApplied()) {
-
+      let testerLine = `${tester.consoleIcon} ${tester.ansiTitle}`
+      if (hasContent(tester.appliedFixes)) {
+        testerLine += ` (${zahl(tester.appliedFixes, "fix")} applied)`
       }
       startGroup(testerLine)
       if (tester.passed) {
         console.log("Passed!")
-      } else if (!tester.hasFix()) {
+      } else {
         console.log(tester.message)
+      }
+      for (const fix of tester.appliedFixes) {
+        console.log(fix.getAnsiTitle())
       }
       endGroup()
     }

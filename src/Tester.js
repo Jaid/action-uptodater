@@ -32,17 +32,22 @@ export default class {
   consoleIcon = icons.fail
 
   /**
+   * @type {import("src/Fix").default[]}
+   */
+  fixes = []
+
+  /**
+   * @type {import("src/Fix").default[]}
+   */
+  appliedFixes = []
+
+  /**
    * @type {Function}
    * This should be overriden
    */
   async test() {
     return true
   }
-
-  /**
-   * @type {import("src/Fix").default[]}
-   */
-  fixes = []
 
   setTitle(ansiTitle) {
     this.ansiTitle = ansiTitle
@@ -71,6 +76,7 @@ export default class {
         if (hasContent(this.fixes)) {
           for (const fix of this.fixes) {
             await fix.apply()
+            this.appliedFixes.push(fix)
           }
           this.consoleIcon = icons.fix
         }

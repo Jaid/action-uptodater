@@ -30,7 +30,7 @@ export default class Fix {
   newContent = null
 
   /**
-   * @type {import("src/testers/Tester").default}
+   * @type {import("src/Tester").default}
    */
   tester = null
 
@@ -101,8 +101,19 @@ export default class Fix {
       return
     }
     await exec("git", ["add", "."])
-    await exec("git", ["commit", "--all", "--message", `autofix: ${this.tester.name}`])
+    await exec("git", ["commit", "--all", "--message", `autofix: ${this.tester.title}`])
     Fix.commits++
+  }
+
+  /**
+   * @return {string}
+   */
+  getAnsiTitle() {
+    if (this.newContent === false) {
+      return `Delete ${chalk.yellow(this.fileName)}`
+    } else {
+      return `Modify ${chalk.yellow(this.fileName)}`
+    }
   }
 
 }
