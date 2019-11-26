@@ -52,10 +52,13 @@ async function main() {
     }
   }
   await Fix.push()
-  console.log(chalk.bold("Summary:"))
+  const totalPassedTests = rules.reduce((count, rule) => count + rule.passedTests, 0)
+  const totalFailedTests = rules.reduce((count, rule) => count + rule.failedTests, 0)
+  const totalTests = totalPassedTests + totalFailedTests
+  console.log(chalk.bold(`Summary (${totalPassedTests}/${totalTests})`))
   for (const rule of rules) {
-    const totalTests = rule.passedTests + rule.failedTests
-    console.log(`${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${totalTests})`)
+    const tests = rule.passedTests + rule.failedTests
+    console.log(`${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${tests})`)
     for (const tester of rule.testers) {
       let testerLine = `${tester.consoleIcon} ${tester.ansiTitle}`
       if (hasContent(tester.appliedFixes)) {
