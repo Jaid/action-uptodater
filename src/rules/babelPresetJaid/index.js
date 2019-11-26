@@ -4,18 +4,18 @@ import hasDependency from "lib/hasDependency"
 
 export default new class extends Rule {
 
-  title = "Depends on webpack-config-jaid"
+  title = "Depends on babel-preset-jaid"
 
   /**
    * @return {Promise<boolean>}
    */
   async isRelevantToRepo() {
-    return hasDependency("webpack-config-jaid")
+    return hasDependency("babel-preset-jaid")
   }
 
   constructor() {
     super()
-    this.addTester(new FileHasContent("webpack.config.babel.js"))
+    this.addTester(new FileHasContent("jest.config.js"))
   }
 
 }
