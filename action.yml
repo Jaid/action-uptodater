@@ -15,7 +15,7 @@ inputs:
     required: true
   commitMessagePrefix:
     description: Prefix string used in messages for automatically generated commits
-    default: "autofix: "
+    default: "autofix:"
     required: true
 runs:
   using: node12

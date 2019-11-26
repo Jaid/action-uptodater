@@ -115,7 +115,7 @@ export default class Fix {
     if (!isDirtyNow) {
       return
     }
-    const commitMessage = `${commitMessagePrefix}${this.tester.title}`
+    const commitMessage = `${commitMessagePrefix} ${this.tester.title}`
     this.log(`${chalk.gray("Commit:")} ${commitMessage}`)
     await Fix.commit(commitMessage)
   }
