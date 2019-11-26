@@ -41,7 +41,7 @@ export default class Fix {
    */
   hasBeenApplied = false
 
-  static async push() {
+  static async push(autoApprove) {
     if (Fix.commits === 0) {
       return
     }
@@ -49,7 +49,6 @@ export default class Fix {
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${Fix.branchName}`])
     const octokit = new GitHub(token)
     const sha7 = context.sha.slice(0, 8)
-    const autoApprove = getInput("approve", {required: true})
     const pullCreateResult = await octokit.pulls.create({
       ...context.repo,
       title: "test",

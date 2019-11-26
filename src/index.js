@@ -14,6 +14,7 @@ chalk.level = chalk.Level.Ansi256
  * @typedef {Object} ProjectInfo
  * @prop {Object} pkg
  * @prop {boolean} shouldFix
+ * @prop {boolean} autoApprove
  */
 
 /**
@@ -35,6 +36,14 @@ async function main() {
   const projectInfo = {
     pkg: await getPkg(),
     shouldFix: Boolean(getInput("fix", {required: true})),
+    autoApprove: Boolean(getInput("approve", {required: true})),
+  }
+  if (projectInfo.shouldFix) {
+    if (projectInfo.autoApprove) {
+      console.log("Autofixing is enabled, pull requests will be automatically approved and merged")
+    } else {
+      console.log("Autofixing is enabled, approving pull requests must be done manually")
+    }
   }
   /**
    * @type {import("src/Rule").default[]}
@@ -51,7 +60,7 @@ async function main() {
       await tester.run(projectInfo)
     }
   }
-  await Fix.push()
+  await Fix.push(projectInfo.autoApprove)
   const totalPassedTests = rules.reduce((count, rule) => count + rule.passedTests, 0)
   const totalFailedTests = rules.reduce((count, rule) => count + rule.failedTests, 0)
   const totalTests = totalPassedTests + totalFailedTests
