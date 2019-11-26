@@ -55,7 +55,7 @@ async function main() {
   const totalPassedTests = rules.reduce((count, rule) => count + rule.passedTests, 0)
   const totalFailedTests = rules.reduce((count, rule) => count + rule.failedTests, 0)
   const totalTests = totalPassedTests + totalFailedTests
-  console.log(chalk.bold(`Summary (${totalPassedTests}/${totalTests})`))
+  console.log(chalk.bgCyan(`=== Summary (${totalPassedTests}/${totalTests} ${zahl(totalTests, "test")} passed) ===`))
   for (const rule of rules) {
     const tests = rule.passedTests + rule.failedTests
     console.log(`${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${tests})`)
