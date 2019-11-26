@@ -45,6 +45,9 @@ export default class Fix {
   logMessages = []
 
   static async push() {
+    if (Fix.commits === 0) {
+      return
+    }
     const token = getInput("token", {required: true})
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${Fix.branchName}`])
     const octokit = new GitHub(token)
@@ -85,7 +88,7 @@ export default class Fix {
   static async commit(message) {
     if (Fix.branchName === null) {
       Fix.branchName = `fix-${context.sha.slice(0, 8)}`
-      this.log(`First commit, switching to new branch ${Fix.branchName}`)
+      console.log(`First commit, switching to new branch ${Fix.branchName}`)
       await exec("git", ["checkout", "-b", Fix.branchName])
       await exec("git", ["config", "user.email", "action@github.com"])
       await exec("git", ["config", "user.name", "GitHub Action"])

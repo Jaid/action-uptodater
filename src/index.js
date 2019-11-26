@@ -74,13 +74,11 @@ async function main() {
         testerLine += ` (${zahl(tester.appliedFixes, "fix")} applied)`
       }
       startGroup(testerLine)
-      if (tester.passed) {
-        console.log("Passed!")
-      } else {
-        console.log(tester.message)
+      for (const logMessage of tester.logMessages) {
+        console.log(logMessage)
       }
       for (const fix of tester.appliedFixes) {
-        console.log(fix.getAnsiTitle())
+        console.log(`🧰 ${fix.getAnsiTitle()}`)
         for (const logMessage of fix.logMessages) {
           console.log(logMessage)
         }

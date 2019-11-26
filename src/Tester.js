@@ -22,11 +22,6 @@ export default class {
   rule = null
 
   /**
-   * @type {string} Explanation of why the test failed
-   */
-  message = "Failed"
-
-  /**
    * @type {string}
    */
   consoleIcon = icons.fail
@@ -40,6 +35,11 @@ export default class {
    * @type {import("src/Fix").default[]}
    */
   appliedFixes = []
+
+  /**
+   * @type {string[]}
+   */
+  logMessages = []
 
   /**
    * @type {Function}
@@ -62,6 +62,10 @@ export default class {
     return hasContent(this.fixes)
   }
 
+  log(line) {
+    this.logMessages.push(line)
+  }
+
   /**
    * @param {import("./index").ProjectInfo} projectInfo
    * @return {Promise<boolean>}
@@ -69,6 +73,7 @@ export default class {
   async run(projectInfo) {
     const result = await this.test(projectInfo)
     if (result !== true) {
+      this.log(isString(result) ? result : "Failed")
       if (projectInfo.shouldFix) {
         if (isFunction(this.collectFixes)) {
           this.collectFixes()
@@ -78,11 +83,16 @@ export default class {
             await fix.apply()
             this.appliedFixes.push(fix)
           }
-          this.consoleIcon = icons.fix
+          const newResult = await this.test(projectInfo)
+          if (newResult === true) {
+            this.log("Fixed successfully")
+            this.consoleIcon = icons.fix
+            this.rule.incrementPassedTests()
+            return true
+          } else {
+            this.consoleIcon = icons.fixFailed
+          }
         }
-      }
-      if (isString(result)) {
-        this.message = result
       }
       this.rule.incrementFailedTests()
       return false
