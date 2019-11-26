@@ -47,7 +47,7 @@ export default class extends Tester {
   }
 
   collectFixes() {
-    this.addFix(this.shortFile, `${this.expectedContent}x`)
+    this.addFix(this.shortFile, this.expectedContent)
   }
 
 }
