@@ -54,8 +54,9 @@ export default class extends Tester {
     if (this.pkg === null) {
       return
     }
-    this.pkg[this.field] = this.expectedValue
-    this.addFix("package.json", JSON.stringify(this.pkg))
+    const pkgCopy = JSON.parse(JSON.stringify(this.pkg))
+    pkgCopy[this.field] = this.expectedValue
+    this.addFix("package.json", JSON.stringify(pkgCopy, null, 2))
   }
 
 }
