@@ -92,6 +92,9 @@ export default class {
           } else {
             this.consoleIcon = icons.fixFailed
             this.log("Tried to apply a fix, but the test still failed on second run")
+            if (isString(newResult)) {
+              this.log(newResult)
+            }
           }
         }
       }

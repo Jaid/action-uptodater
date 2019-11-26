@@ -9,4 +9,4 @@ Name|Default|Description
 `token`||GitHub token
 `fix`|`false`|If `true`, automatically tries to fix some files and commit them to a pull request
 `approve`|`false`|If `true`, pull requests created by this action are automatically approved and merged
-`useEmojis`|`false`|If `true`, use emojis in commit messages
+`commitMessagePrefix`|`"autofix: "`|Prefix used in messages for automatically generated commits
