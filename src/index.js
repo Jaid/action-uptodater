@@ -71,6 +71,9 @@ async function main() {
       endGroup()
     }
   }
+  if (totalFailedTests !== 0) {
+    setFailed(`${zahl(totalFailedTests, "test")} did fail and could not automatically be fixed`)
+  }
 }
 
 main().catch(error => {
