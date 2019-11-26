@@ -1,19 +1,11 @@
 import path from "path"
 
-import resolveAny from "resolve-any"
-import {pick} from "lodash"
-import {setFailed, getInput, startGroup, endGroup, group, info} from "@actions/core"
-import {context, GitHub} from "@actions/github"
-import {exec} from "@actions/exec"
+import {setFailed, getInput, startGroup, endGroup } from "@actions/core"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
-import isGitRepoDirty from "is-git-repo-dirty"
-import hasContent, {isEmpty} from "has-content"
+import hasContent from "has-content"
 import chalk from "chalk"
 import pFilter from "p-filter"
-import figures from "figures"
-
-import pullBody from "./pullBody.hbs"
 
 // GitHub Actions CI supports color, chalk just does not know that
 chalk.level = chalk.Level.Ansi256
