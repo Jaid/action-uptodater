@@ -30,7 +30,7 @@ export default class extends Tester {
     const stat = await fsp.stat(this.file)
     const bytes = stat.size
     if (!bytes) {
-      return `${this.shortFile} does exist, but it empty`
+      return `${this.shortFile} does exist, but is empty`
     }
     return true
   }
