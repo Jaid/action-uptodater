@@ -1,11 +1,13 @@
 import path from "path"
 
-import {setFailed, getInput, startGroup, endGroup } from "@actions/core"
+import {setFailed, getInput, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
 import fsp from "@absolunet/fsp"
 import hasContent from "has-content"
 import chalk from "chalk"
 import pFilter from "p-filter"
+
+import Fix from "./Fix"
 
 // GitHub Actions CI supports color, chalk just does not know that
 chalk.level = chalk.Level.Ansi256
@@ -61,6 +63,7 @@ async function main() {
       await tester.run(projectInfo)
     }
   }
+  await Fix.push()
   console.log(chalk.bold("Summary:"))
   for (const rule of rules) {
     const totalTests = rule.passedTests + rule.failedTests
@@ -78,6 +81,9 @@ async function main() {
       }
       for (const fix of tester.appliedFixes) {
         console.log(fix.getAnsiTitle())
+        for (const logMessage of fix.logMessages) {
+          console.log(logMessage)
+        }
       }
       endGroup()
     }

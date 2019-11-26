@@ -39,6 +39,11 @@ export default class Fix {
    */
   hasBeenApplied = false
 
+  /**
+   * @type {string[]}
+   */
+  logMessages = []
+
   static async push() {
     const token = getInput("token", {required: true})
     await exec("git", ["push", `https://${process.env.GITHUB_ACTOR}:${token}@github.com/${process.env.GITHUB_REPOSITORY}.git`, `HEAD:${Fix.branchName}`])
@@ -77,9 +82,26 @@ export default class Fix {
 
   }
 
+  static async commit(message) {
+    if (Fix.branchName === null) {
+      Fix.branchName = `fix-${context.sha.slice(0, 8)}`
+      this.log(`First commit, switching to new branch ${Fix.branchName}`)
+      await exec("git", ["checkout", "-b", Fix.branchName])
+      await exec("git", ["config", "user.email", "action@github.com"])
+      await exec("git", ["config", "user.name", "GitHub Action"])
+    }
+    await exec("git", ["add", "--all"])
+    await exec("git", ["commit", "--all", "--message", message])
+    Fix.commits++
+  }
+
   constructor(fileName, newContent) {
     this.fileName = fileName
     this.newContent = newContent
+  }
+
+  log(line) {
+    this.logMessages.push(line)
   }
 
   async apply() {
@@ -90,19 +112,11 @@ export default class Fix {
       console.log(`Modify ${this.fileName}`)
       await fsp.outputFile(this.fileName, this.newContent)
     }
-    if (Fix.branchName === null) {
-      Fix.branchName = `fix-${context.sha.slice(0, 8)}`
-      await exec("git", ["checkout", "-b", Fix.branchName])
-      await exec("git", ["config", "user.email", "action@github.com"])
-      await exec("git", ["config", "user.name", "GitHub Action"])
-    }
     const isDirtyNow = await isGitRepoDirty()
     if (!isDirtyNow) {
       return
     }
-    await exec("git", ["add", "."])
-    await exec("git", ["commit", "--all", "--message", `autofix: ${this.tester.title}`])
-    Fix.commits++
+    await Fix.commit(`autofix: ${this.tester.title}`)
   }
 
   /**
