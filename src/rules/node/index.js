@@ -3,7 +3,7 @@ import PkgFieldExact from "src/testers/PkgFieldExact"
 
 export default new class extends Rule {
 
-  title = "NodeJS"
+  title = "Node"
 
   constructor() {
     super()

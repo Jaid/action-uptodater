@@ -4,7 +4,7 @@ import hasContent from "has-content"
 
 export default new class extends Rule {
 
-  title = "With dependency webpack-config-jaid"
+  title = "Depends on webpack-config-jaid"
 
   /**
    * @param {import("src/index").ProjectInfo} projectInfo
