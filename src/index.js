@@ -5,6 +5,7 @@ import chalk from "chalk"
 import pFilter from "p-filter"
 import getPkg from "lib/getPkg"
 
+import getBooleanInput from "lib/getBooleanInput"
 import Fix from "./Fix"
 
 // GitHub Actions CI supports color, chalk just does not know that
@@ -35,8 +36,8 @@ console.log(`${zahl(Object.keys(rules).length, "rule")} loaded`)
 async function main() {
   const projectInfo = {
     pkg: await getPkg(),
-    shouldFix: Boolean(getInput("fix", {required: true})),
-    autoApprove: Boolean(getInput("approve", {required: true})),
+    shouldFix: getBooleanInput("fix"),
+    autoApprove: getBooleanInput("approve"),
   }
   if (projectInfo.shouldFix) {
     if (projectInfo.autoApprove) {
