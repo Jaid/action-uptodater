@@ -2,6 +2,7 @@ import Tester from "src/Tester"
 import {isEmpty} from "has-content"
 import {isEqual} from "lodash"
 import json5 from "json5"
+import getPkg from "lib/getPkg"
 
 export default class extends Tester {
 
@@ -15,6 +16,11 @@ export default class extends Tester {
    */
   expectedValue = null
 
+  /**
+   * @type {Object}
+   */
+  pkg = null
+
   constructor(field, value) {
     super()
     this.field = field
@@ -23,17 +29,17 @@ export default class extends Tester {
   }
 
   /**
-   * @param {import("src/index").ProjectInfo} projectInfo
    * @return {Promise<Pick<boolean, string>>}
    */
-  async test(projectInfo) {
-    if (projectInfo.pkg === null) {
+  async test() {
+    this.pkg = await getPkg()
+    if (this.pkg === null) {
       return "package.json does not exist"
     }
-    if (isEmpty(projectInfo.pkg)) {
+    if (isEmpty(this.pkg)) {
       return "package.json has no content"
     }
-    const actualValue = projectInfo[this.field]
+    const actualValue = this[this.field]
     if (actualValue === undefined) {
       return `package.json has no key ${this.field}`
     }
@@ -42,6 +48,11 @@ export default class extends Tester {
       return `Actual value of pkg[${this.field}] is ${json5.stringify(actualValue)}`
     }
     return true
+  }
+
+  collectFixes() {
+    this.pkg[this.field] = this.expectedValue
+    this.addFix("package.json", JSON.stringify(this.pkg))
   }
 
 }

@@ -1,11 +1,9 @@
-import path from "path"
-
 import {setFailed, getInput, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
-import fsp from "@absolunet/fsp"
 import hasContent from "has-content"
 import chalk from "chalk"
 import pFilter from "p-filter"
+import getPkg from "lib/getPkg"
 
 import Fix from "./Fix"
 
@@ -32,16 +30,6 @@ for (const value of rulesRequire.keys()) {
 }
 
 console.log(`${zahl(Object.keys(rules).length, "rule")} loaded`)
-
-async function getPkg() {
-  const file = path.resolve("package.json")
-  const exists = await fsp.pathExists(file)
-  if (!exists) {
-    return null
-  }
-  const pkg = await fsp.readJson(file)
-  return pkg
-}
 
 async function main() {
   const projectInfo = {
