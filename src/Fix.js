@@ -7,6 +7,8 @@ import chalk from "chalk"
 
 import pullBody from "./pullBody.hbs"
 
+const commitMessagePrefix = getInput("commitMessagePrefix", {required: true})
+
 export default class Fix {
 
   /**
@@ -113,7 +115,7 @@ export default class Fix {
     if (!isDirtyNow) {
       return
     }
-    const commitMessage = `autofix: ${this.tester.title}`
+    const commitMessage = `${commitMessagePrefix}${this.tester.title}`
     this.log(`${chalk.gray("Commit:")} ${commitMessage}`)
     await Fix.commit(commitMessage)
   }
