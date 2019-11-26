@@ -91,6 +91,7 @@ export default class {
             return true
           } else {
             this.consoleIcon = icons.fixFailed
+            this.log("Tried to apply a fix, but the test still failed on second run")
           }
         }
       }
@@ -100,6 +101,7 @@ export default class {
     this.passed = true
     this.consoleIcon = icons.pass
     this.rule.incrementPassedTests()
+    this.log("Passed! <3")
     return true
   }
 
