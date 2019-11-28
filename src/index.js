@@ -89,5 +89,5 @@ async function main() {
 
 main().catch(error => {
   console.error(error)
-  setFailed("jaid/action-uptodater failed")
+  setFailed("jaid/action-uptodater threw an Error")
 })
