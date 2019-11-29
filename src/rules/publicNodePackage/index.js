@@ -25,7 +25,7 @@ export default new class extends Rule {
 
   constructor() {
     super()
-    this.addTester(new FileExact(".github/workflows/publishPackage.yml", require("!raw-loader!./publishPackage.yml").default))
+    // this.addTester(new FileExact(".github/workflows/publishPackage.yml", require("!raw-loader!./publishPackage.yml").default))
   }
 
 }
