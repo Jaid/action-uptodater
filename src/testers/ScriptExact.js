@@ -43,7 +43,7 @@ export default class extends Tester {
     if (isEmpty(this.pkg.scripts)) {
       return "package.json[scripts] has no content"
     }
-    const actualValue = this.pkg[this.scriptName]
+    const actualValue = this.pkg.scripts[this.scriptName]
     if (actualValue === undefined) {
       return `package.json[scripts] has no key ${this.scriptName}`
     }
