@@ -4,6 +4,7 @@ import {exec} from "@actions/exec"
 import {context, GitHub} from "@actions/github"
 import isGitRepoDirty from "is-git-repo-dirty"
 import chalk from "chalk"
+import zahl from "zahl"
 
 import pullBody from "./pullBody.hbs"
 
@@ -51,7 +52,7 @@ export default class Fix {
     const sha7 = context.sha.slice(0, 8)
     const pullCreateResult = await octokit.pulls.create({
       ...context.repo,
-      title: "test",
+      title: `Applied ${zahl(Fix.commits, "fix")} from jaid/action-uptodater`,
       body: pullBody({
         ...context.repo,
         sha7,
