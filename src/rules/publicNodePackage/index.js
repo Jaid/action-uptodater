@@ -1,6 +1,7 @@
 import Rule from "src/Rule"
 import getPkg from "lib/getPkg"
-import FileExact from "src/testers/FileExact"
+import PkgFieldExact from "src/testers/PkgFieldExact"
+import {context} from "@actions/github"
 
 export default new class extends Rule {
 
@@ -25,7 +26,7 @@ export default new class extends Rule {
 
   constructor() {
     super()
-    // this.addTester(new FileExact(".github/workflows/publishPackage.yml", require("!raw-loader!./publishPackage.yml").default))
+    this.addTester(new PkgFieldExact("name", context.repo.repo))
   }
 
 }
