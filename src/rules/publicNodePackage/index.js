@@ -4,7 +4,7 @@ import FileExact from "src/testers/FileExact"
 
 export default new class extends Rule {
 
-  title = "Node packages that gets published publicly"
+  title = "Node package that gets published publicly"
 
   /**
    * @return {Promise<boolean>}
