@@ -65,10 +65,11 @@ async function main() {
   const totalPassedTests = rules.reduce((count, rule) => count + rule.passedTests, 0)
   const totalFailedTests = rules.reduce((count, rule) => count + rule.failedTests, 0)
   const totalTests = totalPassedTests + totalFailedTests
-  console.log(chalk.bgCyan(`=== Summary (${totalPassedTests}/${zahl(totalTests, "test")} passed) ===`))
+  console.log(chalk.bgCyan(`  === Summary (${totalPassedTests}/${zahl(totalTests, "test")} passed) ===  `))
   for (const rule of rules) {
     const tests = rule.passedTests + rule.failedTests
-    console.log(`${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${tests})`)
+    const backgroundColor = rule.failedTests ? chalk.bgRed : chalk.bgGreen
+    console.log(backgroundColor(`  ${rule.consoleIcon} ${rule.getTitle()} (${rule.passedTests}/${tests})`.padEnd(80)))
     for (const tester of rule.testers) {
       let testerLine = `${tester.consoleIcon} ${tester.ansiTitle}`
       if (hasContent(tester.appliedFixes)) {
