@@ -21,7 +21,7 @@ chalk.level = chalk.Level.Ansi256
 /**
  * @type {import("src/Rule").default[]}
  */
-const rules = []
+let rules = []
 
 const rulesRequire = require.context("./rules/", true, /index.js$/)
 for (const value of rulesRequire.keys()) {
@@ -49,13 +49,13 @@ async function main() {
   /**
    * @type {import("src/Rule").default[]}
    */
-  const relevantRules = await pFilter(Object.values(rules), async rule => {
+  rules = await pFilter(Object.values(rules), async rule => {
     // TODO: Add argument forwarding to resolve-any
     // const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo)
     const isRelevantToRepo = await rule.isRelevantToRepo(projectInfo)
     return isRelevantToRepo
   })
-  console.log(`Selected rules: ${relevantRules.map(rule => rule.id).join(", ")}`)
+  console.log(`Selected rules: ${rules.map(rule => rule.id).join(", ")}`)
   for (const rule of rules) {
     for (const tester of rule.testers) {
       await tester.run(projectInfo)
