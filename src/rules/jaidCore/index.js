@@ -17,7 +17,7 @@ export default new class extends Rule {
 
   constructor() {
     super()
-    this.addTester(new FileExact("index.js", require("!raw-loader!./srcIndex.js").default))
+    this.addTester(new FileExact("src/index.js", require("!raw-loader!./srcIndex.js").default))
     this.addTester(new FolderExists("src/plugins"))
     this.addTester(new FileHasContent("src/core.js"))
   }
