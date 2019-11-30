@@ -13,6 +13,10 @@ inputs:
     description: If true, pull requests created by this action are automatically approved and merged
     default: false
     required: true
+  removeBranch:
+    description: If true, automatically merged pull requests will delete their branch afterwards
+    default: true
+    required: true
   commitMessagePrefix:
     description: Prefix string used in messages for automatically generated commits
     default: "autofix:"

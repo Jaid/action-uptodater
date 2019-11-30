@@ -5,7 +5,10 @@ import chalk from "chalk"
 import pFilter from "p-filter"
 import getPkg from "lib/getPkg"
 import getBooleanInput from "get-boolean-action-input"
+import CommitManager from "commit-from-action"
+import {context} from "@actions/github"
 
+import pullBody from "./pullBody.hbs"
 import Fix from "./Fix"
 
 // GitHub Actions CI supports color, chalk just does not know that
@@ -45,6 +48,23 @@ async function main() {
     } else {
       console.log("Autofixing is enabled, approving pull requests must be done manually")
     }
+    Fix.commitManager = new CommitManager({
+      autoApprove: projectInfo.autoApprove,
+      autoRemoveBranch: getBooleanInput("removeBranch", {required: true}),
+      githubTokenInputName: "token",
+      branchPrefix: "fix-",
+      pullRequestTitle: commitManager => `Applied ${zahl(commitManager.commits, "fix")} from jaid/action-uptodater`,
+      pullRequestBody: () => pullBody({
+        ...context.repo,
+        sha7: context.sha?.slice(0, 8),
+        autoApprove: projectInfo.autoApprove,
+        sha: context.sha,
+        actionRepo: "Jaid/action-uptodater",
+        actionPage: "https://github.com/marketplace/actions/uptodater",
+        branch: Fix.branchName,
+      }),
+      mergeMessage: commitManager => `Automatically merged boilerplate update from #${commitManager.pullNumber}`,
+    })
   }
   /**
    * @type {import("src/Rule").default[]}
@@ -61,7 +81,7 @@ async function main() {
       await tester.run(projectInfo)
     }
   }
-  await Fix.push(projectInfo.autoApprove)
+  await Fix.commitManager?.push()
   const totalPassedTests = rules.reduce((count, rule) => count + rule.passedTests, 0)
   const totalFailedTests = rules.reduce((count, rule) => count + rule.failedTests, 0)
   const totalTests = totalPassedTests + totalFailedTests
