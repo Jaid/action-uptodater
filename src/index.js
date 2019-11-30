@@ -69,7 +69,7 @@ async function main() {
   for (const rule of rules) {
     const tests = rule.passedTests + rule.failedTests
     const backgroundColor = rule.failedTests ? chalk.bgRed : chalk.bgGreen
-    console.log(`${backgroundColor("  ")}${rule.consoleIcon}${backgroundColor(`${rule.getTitle()} (${rule.passedTests}/${tests})`.padEnd(60))}`)
+    console.log(`${backgroundColor("  ")}${rule.consoleIcon}${backgroundColor(` ${rule.getTitle()} (${rule.passedTests}/${tests})`.padEnd(60))}`)
     for (const tester of rule.testers) {
       let testerLine = `${tester.consoleIcon} ${tester.ansiTitle}`
       if (hasContent(tester.appliedFixes)) {
