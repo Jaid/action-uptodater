@@ -4,7 +4,7 @@ import hasContent from "has-content"
 import chalk from "chalk"
 import pFilter from "p-filter"
 import getPkg from "lib/getPkg"
-import getBooleanInput from "lib/getBooleanInput"
+import getBooleanInput from "get-boolean-action-input"
 
 import Fix from "./Fix"
 
