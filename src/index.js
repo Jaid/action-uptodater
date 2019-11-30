@@ -1,4 +1,4 @@
-import {setFailed, getInput, startGroup, endGroup} from "@actions/core"
+import {setFailed, startGroup, endGroup} from "@actions/core"
 import zahl from "zahl"
 import hasContent from "has-content"
 import chalk from "chalk"
