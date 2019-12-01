@@ -7,6 +7,7 @@ import getPkg from "lib/getPkg"
 import getBooleanInput from "get-boolean-action-input"
 import CommitManager from "commit-from-action"
 import {context} from "@actions/github"
+import resolveAny from "resolve-any"
 
 import pullBody from "./pullBody.hbs"
 import Fix from "./Fix"
@@ -70,9 +71,7 @@ async function main() {
    * @type {import("src/Rule").default[]}
    */
   rules = await pFilter(Object.values(rules), async rule => {
-    // TODO: Add argument forwarding to resolve-any
-    // const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo)
-    const isRelevantToRepo = await rule.isRelevantToRepo(projectInfo)
+    const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo, projectInfo)
     return isRelevantToRepo
   })
   console.log(`Selected rules: ${rules.map(rule => rule.id).join(", ")}`)
@@ -82,10 +81,7 @@ async function main() {
     }
   }
   await Fix.commitManager?.push()
-  const totalPassedTests = rules.reduce((count, rule) => count + rule.passedTests, 0)
   const totalFailedTests = rules.reduce((count, rule) => count + rule.failedTests, 0)
-  const totalTests = totalPassedTests + totalFailedTests
-  console.log(chalk.bgCyan(`  === Summary (${totalPassedTests}/${zahl(totalTests, "test")} passed) ===  `))
   for (const rule of rules) {
     const tests = rule.passedTests + rule.failedTests
     const backgroundColor = rule.failedTests ? chalk.bgRed : chalk.bgGreen

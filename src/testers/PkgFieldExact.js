@@ -4,6 +4,7 @@ import {isEqual} from "lodash"
 import json5 from "json5"
 import getPkg from "lib/getPkg"
 import chalk from "chalk"
+import dotDotDot from "dot-dot-dot"
 
 export default class extends Tester {
 
@@ -26,11 +27,11 @@ export default class extends Tester {
     super()
     this.field = field
     this.expectedValue = value
-    this.setTitle(`${chalk.yellow(`package.json[${field}]`)} should be ${chalk.blue(json5.stringify(value))}`)
+    this.setTitle(`${chalk.yellow(`package.json[${field}]`)} should be ${chalk.blue(dotDotDot(json5.stringify(value), 50))}`)
   }
 
   /**
-   * @return {Promise<Pick<boolean, string>>}
+   * @return {Promise<boolean|string>}
    */
   async test() {
     this.pkg = await getPkg()
