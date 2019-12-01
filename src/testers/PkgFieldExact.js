@@ -4,7 +4,7 @@ import {isEqual} from "lodash"
 import json5 from "json5"
 import getPkg from "lib/getPkg"
 import chalk from "chalk"
-import dotDotDot from "dot-dot-dot"
+import cropString from "crop-string"
 
 export default class extends Tester {
 
@@ -27,7 +27,7 @@ export default class extends Tester {
     super()
     this.field = field
     this.expectedValue = value
-    this.setTitle(`${chalk.yellow(`package.json[${field}]`)} should be ${chalk.blue(dotDotDot(json5.stringify(value), 50))}`)
+    this.setTitle(`${chalk.yellow(`package.json[${field}]`)} should be ${chalk.blue(cropString(json5.stringify(value), 50))}`)
   }
 
   /**

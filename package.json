@@ -13,6 +13,7 @@
     "async-af": "^7.0.38",
     "chalk": "^3.0.0",
     "commit-from-action": "^1.1.0",
+    "crop-string": "^2.0.0",
     "figures": "^3.1.0",
     "get-boolean-action-input": "^1.0.2",
     "globby": "^10.0.1",
