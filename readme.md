@@ -15,6 +15,11 @@ scriptElement.setAttribute("src","https://unpkg.com/@1.2.0");
 document.querySelector("head").appendChild(scriptElement);
 ```
 
+The module is now loaded in a variable.
+
+```javascript
+typeof .default
+```
 
 
 ## License
