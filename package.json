@@ -41,6 +41,7 @@
   "scripts": {
     "build": "rimraf build && NODE_ENV=production webpack",
     "build-push": "npm run build && git add build && npx git-flush-cli 'Rebuilt src/'",
-    "testOnGithub": "name=$(npx package-name-cli) && npx git-flush-cli Changes && npm run build-push && npx git-flush-cli Rebuilt && cd ../test && git pull && npm run randomCommit && cd ../$name"
+    "testOnGithub": "name=$(npx package-name-cli) && npx git-flush-cli Changes && npm run build-push && npx git-flush-cli Rebuilt && cd ../test && git pull && npm run randomCommit && cd ../$name",
+    "prepareActionJest": "npm run build:prod"
   }
 }
