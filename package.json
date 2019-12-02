@@ -12,7 +12,7 @@
     "@babel/runtime": "^7.7.4",
     "async-af": "^7.0.38",
     "chalk": "^3.0.0",
-    "commit-from-action": "^1.1.0",
+    "commit-from-action": "^1.2.0",
     "crop-string": "^2.0.0",
     "figures": "^3.1.0",
     "get-boolean-action-input": "^1.0.2",
@@ -34,7 +34,7 @@
     "babel-preset-jaid": "^6.11.1",
     "browserslist-config-jaid-node": "^2.2.2",
     "eslint": "^6.7.2",
-    "eslint-config-jaid": "^1.37.0",
+    "eslint-config-jaid": "^1.39.0",
     "rimraf": "^3.0.0",
     "webpack-config-jaid": "^5.29.1"
   },
