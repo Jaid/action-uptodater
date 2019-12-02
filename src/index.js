@@ -55,14 +55,14 @@ async function main() {
       githubTokenInputName: "token",
       branchPrefix: "fix-",
       pullRequestTitle: commitManager => `Applied ${zahl(commitManager.commits, "fix")} from jaid/action-uptodater`,
-      pullRequestBody: () => pullBody({
+      pullRequestBody: commitManager => pullBody({
         ...context.repo,
         sha7: context.sha?.slice(0, 8),
         autoApprove: projectInfo.autoApprove,
         sha: context.sha,
         actionRepo: "Jaid/action-uptodater",
         actionPage: "https://github.com/marketplace/actions/uptodater",
-        branch: Fix.branchName,
+        branch: commitManager.branch,
       }),
       mergeMessage: commitManager => `Automatically merged boilerplate update from #${commitManager.pullNumber}`,
     })
