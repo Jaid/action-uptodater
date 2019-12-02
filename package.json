@@ -42,7 +42,6 @@
     "build": "rimraf build && NODE_ENV=production webpack",
     "build-push": "npm run build && git add build && git commit --sign --message 'Rebuilt src/' && git push",
     "testOnGithub": "name=$(npx package-name-cli) && npm run build-push && cd ../test && npm run randomCommit && cd ../$name",
-    "preparActionJest": "npm run build:prod",
     "prepareActionJest": "npm run build:prod"
   }
 }
