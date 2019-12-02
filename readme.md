@@ -5,6 +5,17 @@ GitHub Action that ensures my Node projects use an up-to-date boilerplate setup.
 
 
 
+## Try it out
+Open a browser's JavaScript console and execute:
+
+```javascript
+const scriptElement = document.createElement("script");
+scriptElement.setAttribute("type","text/javascript");
+scriptElement.setAttribute("src","https://unpkg.com/@1.2.0");
+document.querySelector("head").appendChild(scriptElement);
+```
+
+
 
 ## License
 ```text
