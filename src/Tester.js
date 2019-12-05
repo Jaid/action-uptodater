@@ -1,8 +1,10 @@
-import stripAnsi from "strip-ansi"
-import Fix from "src/Fix"
-import {isString, isFunction} from "lodash"
 import hasContent from "has-content"
+import {isFunction, isString} from "lodash"
+import stripAnsi from "strip-ansi"
+
 import icons from "lib/consoleIcons"
+
+import Fix from "src/Fix"
 
 export default class {
 

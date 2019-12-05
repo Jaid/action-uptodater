@@ -1,10 +1,12 @@
-import Tester from "src/Tester"
-import {isEmpty} from "has-content"
-import {isEqual} from "lodash"
-import json5 from "json5"
-import getPkg from "lib/getPkg"
 import chalk from "chalk"
 import cropString from "crop-string"
+import {isEmpty} from "has-content"
+import json5 from "json5"
+import {isEqual} from "lodash"
+
+import getPkg from "lib/getPkg"
+
+import Tester from "src/Tester"
 
 export default class extends Tester {
 

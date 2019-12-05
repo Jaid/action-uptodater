@@ -1,16 +1,17 @@
-import {setFailed, startGroup, endGroup} from "@actions/core"
-import zahl from "zahl"
-import hasContent from "has-content"
-import chalk from "chalk"
-import pFilter from "p-filter"
-import getPkg from "lib/getPkg"
-import getBooleanInput from "get-boolean-action-input"
-import CommitManager from "commit-from-action"
+import {endGroup, setFailed, startGroup} from "@actions/core"
 import {context} from "@actions/github"
+import chalk from "chalk"
+import CommitManager from "commit-from-action"
+import getBooleanInput from "get-boolean-action-input"
+import hasContent from "has-content"
+import pFilter from "p-filter"
 import resolveAny from "resolve-any"
+import zahl from "zahl"
 
-import pullBody from "./pullBody.hbs"
+import getPkg from "lib/getPkg"
+
 import Fix from "./Fix"
+import pullBody from "./pullBody.hbs"
 
 // GitHub Actions CI supports color, chalk just does not know that
 chalk.level = chalk.Level.Ansi256

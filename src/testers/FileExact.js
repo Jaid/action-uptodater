@@ -1,9 +1,9 @@
+import fsp from "@absolunet/fsp"
+import chalk from "chalk"
+import hasha from "hasha"
 import path from "path"
 
-import fsp from "@absolunet/fsp"
 import Tester from "src/Tester"
-import hasha from "hasha"
-import chalk from "chalk"
 
 export default class extends Tester {
 

@@ -1,5 +1,6 @@
 
 import hasContent from "has-content"
+
 import icons from "lib/consoleIcons"
 
 export default class {
