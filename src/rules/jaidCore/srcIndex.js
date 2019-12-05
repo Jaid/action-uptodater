@@ -21,9 +21,11 @@ async function job() {
 process.on("unhandledRejection", error => {
   logError("Unhandled promise rejection")
   logError(error)
+  process.exit(1)
 })
 
 job().catch(error => {
   logError("Core process crashed")
   logError(error)
+  process.exit(1)
 })
