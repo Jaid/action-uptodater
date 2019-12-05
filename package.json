@@ -31,12 +31,12 @@
   },
   "devDependencies": {
     "acorn": "^7.1.0",
-    "babel-preset-jaid": "^6.11.1",
+    "babel-preset-jaid": "^6.11.2",
     "browserslist-config-jaid-node": "^2.2.2",
     "eslint": "^6.7.2",
-    "eslint-config-jaid": "^1.39.0",
+    "eslint-config-jaid": "^1.41.0",
     "rimraf": "^3.0.0",
-    "webpack-config-jaid": "^5.29.1"
+    "webpack-config-jaid": "^5.32.1"
   },
   "scripts": {
     "build": "rimraf build && NODE_ENV=production webpack",
