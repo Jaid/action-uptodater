@@ -1,5 +1,5 @@
 
-import hasContent from "has-content"
+import hasContent, {isEmpty} from "has-content"
 
 import icons from "lib/consoleIcons"
 
@@ -35,6 +35,11 @@ export default class {
    */
   consoleIcon = icons.pass
 
+  /**
+   * @type {Object}
+   */
+  pkg = null
+
   incrementPassedTests() {
     this.passedTests++
   }
@@ -57,6 +62,30 @@ export default class {
 
   hasTesters() {
     return hasContent(this.testers)
+  }
+
+  /**
+   * @param {string} dependency
+   * @return {boolean}
+   */
+  hasDependency(dependency) {
+    const dependencyFields = [
+      "dependencies",
+      "devDependencies",
+      "optionalDependencies",
+      "peerDependencies",
+      "bundleDependencies",
+      "bundledDependencies",
+    ]
+    if (isEmpty(this.pkg)) {
+      return false
+    }
+    for (const key of dependencyFields) {
+      if (hasContent(this.pkg[key]?.[dependency])) {
+        return true
+      }
+    }
+    return false
   }
 
   /**

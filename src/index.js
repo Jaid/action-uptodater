@@ -72,6 +72,7 @@ async function main() {
    * @type {import("src/Rule").default[]}
    */
   rules = await pFilter(Object.values(rules), async rule => {
+    rule.pkg = projectInfo.pkg
     const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo, projectInfo)
     return isRelevantToRepo
   })
