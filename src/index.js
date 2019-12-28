@@ -44,6 +44,9 @@ async function main() {
     shouldFix: getBooleanInput("fix"),
     autoApprove: getBooleanInput("approve"),
   }
+  for (const rule of rules) {
+    rule.pkg = projectInfo.pkg
+  }
   if (projectInfo.shouldFix) {
     if (projectInfo.autoApprove) {
       console.log("Autofixing is enabled, pull requests will be automatically approved and merged")
@@ -72,7 +75,6 @@ async function main() {
    * @type {import("src/Rule").default[]}
    */
   rules = await pFilter(Object.values(rules), async rule => {
-    rule.pkg = projectInfo.pkg
     const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo, projectInfo)
     return isRelevantToRepo
   })

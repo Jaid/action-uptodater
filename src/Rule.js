@@ -79,10 +79,12 @@ export default class {
       "bundledDependencies",
     ]
     if (isEmpty(this.pkg)) {
+      console.log("Empty")
       return false
     }
     for (const key of dependencyFields) {
       if (this.pkg[key]?.[dependency]) {
+        console.log("True")
         return true
       }
     }
