@@ -1,7 +1,7 @@
 import Rule from "src/Rule"
-import PkgFieldExact from "src/testers/PkgFieldExact"
 import FileExact from "src/testers/FileExact"
 import FileShouldNotExist from "src/testers/FileShouldNotExist.js"
+import PkgFieldExact from "src/testers/PkgFieldExact"
 
 import jsConfig from "./js.json"
 

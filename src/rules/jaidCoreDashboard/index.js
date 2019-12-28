@@ -1,6 +1,7 @@
-import FileHasContent from "src/testers/FileHasContent"
-import Rule from "src/Rule"
 import hasDependency from "lib/hasDependency"
+
+import Rule from "src/Rule"
+import FileHasContent from "src/testers/FileHasContent"
 
 export default new class extends Rule {
 
