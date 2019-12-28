@@ -4,6 +4,7 @@ import chalk from "chalk"
 import CommitManager from "commit-from-action"
 import getBooleanInput from "get-boolean-action-input"
 import hasContent from "has-content"
+import {isFunction} from "lodash"
 import pFilter from "p-filter"
 import resolveAny from "resolve-any"
 import zahl from "zahl"
@@ -46,7 +47,9 @@ async function main() {
   }
   for (const rule of rules) {
     rule.pkg = {...projectInfo.pkg}
-    resolveAny(rule.init)
+    if (isFunction(rule.init)) {
+      await rule.init()
+    }
   }
   if (projectInfo.shouldFix) {
     if (projectInfo.autoApprove) {
