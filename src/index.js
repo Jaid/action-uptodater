@@ -45,6 +45,7 @@ async function main() {
     autoApprove: getBooleanInput("approve"),
   }
   for (const rule of rules) {
+    console.log(projectInfo.pkg)
     rule.pkg = projectInfo.pkg
   }
   if (projectInfo.shouldFix) {
