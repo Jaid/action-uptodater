@@ -69,7 +69,6 @@ export default class {
    * @return {boolean}
    */
   hasDependency(dependency) {
-    console.log(`Looking for dependency ${dependency}`)
     const dependencyFields = [
       "dependencies",
       "devDependencies",
@@ -79,12 +78,10 @@ export default class {
       "bundledDependencies",
     ]
     if (isEmpty(this.pkg)) {
-      console.log("Empty")
       return false
     }
     for (const key of dependencyFields) {
       if (this.pkg[key]?.[dependency]) {
-        console.log("True")
         return true
       }
     }
