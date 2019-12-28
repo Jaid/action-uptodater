@@ -10,12 +10,10 @@ export default new class extends Rule {
 
   title = "Node"
 
-  constructor() {
-    super()
+  init() {
     this.addTester(new PkgFieldExact("author", "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)"))
     this.addTester(new FileShouldNotExist("index.js"))
     let jsConfigTester = null
-    console.log(this.pkg)
     if (this.hasDependency("react-dom")) {
       jsConfigTester = new FileExact("jsconfig.json", JSON.stringify(jsConfigReact, null, 2))
     } else {

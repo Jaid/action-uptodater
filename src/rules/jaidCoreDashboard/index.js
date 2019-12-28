@@ -14,8 +14,7 @@ export default new class extends Rule {
     return hasDependency("jaid-core-dashboard")
   }
 
-  constructor() {
-    super()
+  init() {
     this.addTester(new FileHasContent("src/plugins/dashboard/index.js"))
   }
 

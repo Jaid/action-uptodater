@@ -7,8 +7,7 @@ export default new class extends Rule {
 
   title = "Any repository"
 
-  constructor() {
-    super()
+  init() {
     this.addTester(new FileExact("license.txt", require("./license.txt").default))
     this.addTester(new FileExact(".editorconfig", require("./editorconfig.txt").default))
     this.addTester(new FileExact(".github/funding.yml", require("!raw-loader!./funding.yml").default))

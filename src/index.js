@@ -46,6 +46,7 @@ async function main() {
   }
   for (const rule of rules) {
     rule.pkg = {...projectInfo.pkg}
+    resolveAny(rule.init)
   }
   if (projectInfo.shouldFix) {
     if (projectInfo.autoApprove) {

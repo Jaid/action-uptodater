@@ -14,8 +14,7 @@ export default new class extends Rule {
     return hasDependency("babel-preset-jaid")
   }
 
-  constructor() {
-    super()
+  init() {
     this.addTester(new FileHasContent("jest.config.js"))
   }
 

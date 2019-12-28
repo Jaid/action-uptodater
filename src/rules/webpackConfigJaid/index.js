@@ -15,8 +15,7 @@ export default new class extends Rule {
     return hasDependency("webpack-config-jaid")
   }
 
-  constructor() {
-    super()
+  init() {
     this.addTester(new FileHasContent("webpack.config.babel.js"))
     this.addTester(new ScriptExact("prepareActionJest", "npm run build:prod"))
   }

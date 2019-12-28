@@ -16,8 +16,7 @@ export default new class extends Rule {
     return hasDependency("jaid-core")
   }
 
-  constructor() {
-    super()
+  init() {
     this.addTester(new FileExact("src/index.js", require("!raw-loader!./srcIndex.js").default))
     this.addTester(new FolderExists("src/plugins"))
     this.addTester(new FileHasContent("src/core.js"))

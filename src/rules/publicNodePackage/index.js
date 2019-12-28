@@ -26,8 +26,7 @@ export default new class extends Rule {
     return true
   }
 
-  constructor() {
-    super()
+  init() {
     this.addTester(new PkgFieldExact("name", context.repo.repo))
   }
 
