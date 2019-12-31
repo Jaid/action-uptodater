@@ -6,7 +6,6 @@ import getBooleanInput from "get-boolean-action-input"
 import hasContent from "has-content"
 import {isFunction} from "lodash"
 import pFilter from "p-filter"
-import resolveAny from "resolve-any"
 import zahl from "zahl"
 
 import getPkg from "lib/getPkg"
@@ -79,7 +78,7 @@ async function main() {
    * @type {import("src/Rule").default[]}
    */
   rules = await pFilter(Object.values(rules), async rule => {
-    const isRelevantToRepo = await resolveAny(rule.isRelevantToRepo, projectInfo)
+    const isRelevantToRepo = await rule.isRelevantToRepo(projectInfo)
     return isRelevantToRepo
   })
   console.log(`Selected rules: ${rules.map(rule => rule.id).join(", ")}`)

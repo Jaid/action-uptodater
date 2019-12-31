@@ -26,7 +26,6 @@
     "lodash": "^4.17.15",
     "p-filter": "^2.1.0",
     "read-package-json-fast": "^1.1.0",
-    "resolve-any": "^2.0.0",
     "strip-ansi": "^6.0.0",
     "zahl": "^2.0.3"
   },
