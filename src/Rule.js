@@ -1,4 +1,5 @@
 
+import ensureArray from "ensure-array"
 import hasContent, {isEmpty} from "has-content"
 
 import icons from "lib/consoleIcons"
@@ -66,10 +67,11 @@ export default class {
 
   /**
    * @param {string} dependency
+   * @param {string|string[]} dependencyField
    * @return {boolean}
    */
-  hasDependency(dependency) {
-    const dependencyFields = [
+  hasDependency(dependency, dependencyField) {
+    const dependencyFields = dependencyField ? ensureArray(dependencyField) : [
       "dependencies",
       "devDependencies",
       "optionalDependencies",
@@ -86,6 +88,14 @@ export default class {
       }
     }
     return false
+  }
+
+  hasProductionDependency(dependency) {
+    return this.hasDependency(dependency, "dependencies")
+  }
+
+  hasDevelopmentDependency(dependency) {
+    return this.hasDependency(dependency, "devDependencies")
   }
 
   /**

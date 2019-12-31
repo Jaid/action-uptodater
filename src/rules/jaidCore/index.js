@@ -1,5 +1,3 @@
-import hasDependency from "lib/hasDependency"
-
 import Rule from "src/Rule"
 import FileExact from "src/testers/FileExact"
 import FileHasContent from "src/testers/FileHasContent"
@@ -13,7 +11,7 @@ export default new class extends Rule {
    * @return {Promise<boolean>}
    */
   async isRelevantToRepo() {
-    return hasDependency("jaid-core")
+    return this.hasProductionDependency("jaid-core")
   }
 
   init() {

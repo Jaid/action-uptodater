@@ -1,5 +1,3 @@
-import hasDependency from "lib/hasDependency"
-
 import Rule from "src/Rule"
 import FileHasContent from "src/testers/FileHasContent"
 import ScriptExact from "src/testers/ScriptExact"
@@ -12,7 +10,7 @@ export default new class extends Rule {
    * @return {Promise<boolean>}
    */
   async isRelevantToRepo() {
-    return hasDependency("webpack-config-jaid")
+    return this.hasDependency("webpack-config-jaid")
   }
 
   init() {
