@@ -1,17 +1,50 @@
 # action-uptodater
 
 
-GitHub Action that ensures my Node projects use an up-to-date boilerplate setup.
+<a href="https://raw.githubusercontent.com/Jaid/action-uptodater/master/license.txt"><img src="https://img.shields.io/github/license/Jaid/action-uptodater?style=flat-square" alt="License"/></a>  
+<a href="https://actions-badge.atrox.dev/Jaid/action-uptodater/goto"><img src="https://img.shields.io/endpoint.svg?style=flat-square&url=https%3A%2F%2Factions-badge.atrox.dev%2FJaid%2Faction-uptodater%2Fbadge" alt="Build status"/></a> <a href="https://github.com/Jaid/action-uptodater/commits"><img src="https://img.shields.io/github/commits-since/Jaid/action-uptodater/v1.2.0?style=flat-square&logo=github" alt="Commits since v1.2.0"/></a> <a href="https://github.com/Jaid/action-uptodater/commits"><img src="https://img.shields.io/github/last-commit/Jaid/action-uptodater?style=flat-square&logo=github" alt="Last commit"/></a> <a href="https://github.com/Jaid/action-uptodater/issues"><img src="https://img.shields.io/github/issues/Jaid/action-uptodater?style=flat-square&logo=github" alt="Issues"/></a>  
+
+**GitHub Action that ensures my Node projects use an up-to-date boilerplate setup.**
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Development
+
+
+
+Setting up:
+```bash
+git clone git@github.com:Jaid/action-uptodater.git
+cd action-uptodater
+npm install
+```
 
 
 ## License
 ```text
 MIT License
 
-Copyright © 2019, Jaid <jaid.jsx@gmail.com> (github.com/jaid)
+Copyright © 2020, Jaid <jaid.jsx@gmail.com> (github.com/jaid)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
