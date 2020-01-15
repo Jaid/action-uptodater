@@ -11,7 +11,7 @@ export default new class extends Rule {
    * @return {Promise<boolean>}
    */
   async isRelevantToRepo() {
-    return this.hasProductionDependency("jaid-core")
+    return this.hasProductionDependency("jaid-core") && this.hasProductionDependency("yargs")
   }
 
   init() {
