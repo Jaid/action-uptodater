@@ -90,10 +90,18 @@ export default class {
     return false
   }
 
+  /**
+   * @param {string} dependency
+   * @return {boolean}
+   */
   hasProductionDependency(dependency) {
     return this.hasDependency(dependency, "dependencies")
   }
 
+  /**
+   * @param {string} dependency
+   * @return {boolean}
+   */
   hasDevelopmentDependency(dependency) {
     return this.hasDependency(dependency, "devDependencies")
   }
