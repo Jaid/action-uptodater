@@ -34,7 +34,9 @@ async function job() {
 function main() {
   job().catch(error => {
     logError("Core process crashed")
-    logError(error)
+    if (error !== undefined) {
+      logError(error)
+    }
     process.exit(1)
   })
 }
