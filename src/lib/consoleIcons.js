@@ -1,4 +1,4 @@
-import chalk from "chalk"
+import chalk from "lib/chalk"
 import figures from "figures"
 
 export default {

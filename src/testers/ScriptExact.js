@@ -1,4 +1,4 @@
-import chalk from "chalk"
+import chalk from "lib/chalk"
 import {isEmpty} from "has-content"
 import json5 from "json5"
 import {isEqual} from "lodash"

@@ -1,6 +1,5 @@
 import {endGroup, setFailed, startGroup} from "@actions/core"
 import {context} from "@actions/github"
-import chalk from "chalk"
 import CommitManager from "commit-from-action"
 import getBooleanInput from "get-boolean-action-input"
 import hasContent from "has-content"
@@ -8,13 +7,11 @@ import {isFunction} from "lodash"
 import pFilter from "p-filter"
 import zahl from "zahl"
 
+import chalk from "lib/chalk"
 import getPkg from "lib/getPkg"
 
 import Fix from "./Fix"
 import pullBody from "./pullBody.hbs"
-
-// GitHub Actions CI supports color, chalk just does not know that
-chalk.level = chalk.Level.Ansi256
 
 /**
  * @typedef {Object} ProjectInfo

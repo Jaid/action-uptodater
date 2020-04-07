@@ -1,5 +1,5 @@
 import fsp from "@absolunet/fsp"
-import chalk from "chalk"
+import chalk from "lib/chalk"
 import hasha from "hasha"
 import path from "path"
 
