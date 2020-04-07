@@ -1,5 +1,6 @@
 import fsp from "@absolunet/fsp"
 import {getInput} from "@actions/core"
+
 import chalk from "lib/chalk"
 
 const commitMessagePrefix = getInput("commitMessagePrefix", {required: true})

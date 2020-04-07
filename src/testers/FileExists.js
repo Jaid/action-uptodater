@@ -1,6 +1,7 @@
 import fsp from "@absolunet/fsp"
-import chalk from "lib/chalk"
 import path from "path"
+
+import chalk from "lib/chalk"
 
 import Tester from "src/Tester"
 
