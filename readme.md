@@ -1,11 +1,14 @@
 # action-uptodater
 
 
-<a href="https://raw.githubusercontent.com/Jaid/action-uptodater/master/license.txt"><img src="https://img.shields.io/github/license/Jaid/action-uptodater?style=flat-square" alt="License"/></a>  
-<a href="https://actions-badge.atrox.dev/Jaid/action-uptodater/goto"><img src="https://img.shields.io/endpoint.svg?style=flat-square&url=https%3A%2F%2Factions-badge.atrox.dev%2FJaid%2Faction-uptodater%2Fbadge" alt="Build status"/></a> <a href="https://github.com/Jaid/action-uptodater/commits"><img src="https://img.shields.io/github/commits-since/Jaid/action-uptodater/v1.2.0?style=flat-square&logo=github" alt="Commits since v1.2.0"/></a> <a href="https://github.com/Jaid/action-uptodater/commits"><img src="https://img.shields.io/github/last-commit/Jaid/action-uptodater?style=flat-square&logo=github" alt="Last commit"/></a> <a href="https://github.com/Jaid/action-uptodater/issues"><img src="https://img.shields.io/github/issues/Jaid/action-uptodater?style=flat-square&logo=github" alt="Issues"/></a>  
+<a href="https://raw.githubusercontent.com/jaid/action-uptodater/master/license.txt"><img src="https://img.shields.io/github/license/jaid/action-uptodater?style=flat-square" alt="License"/></a> <a href="https://github.com/sponsors/jaid"><img src="https://img.shields.io/badge/<3-Sponsor-FF45F1?style=flat-square" alt="Sponsor action-uptodater"/></a>  
+<a href="https://actions-badge.atrox.dev/jaid/action-uptodater/goto"><img src="https://img.shields.io/endpoint.svg?style=flat-square&url=https%3A%2F%2Factions-badge.atrox.dev%2Fjaid%2Faction-uptodater%2Fbadge" alt="Build status"/></a> <a href="https://github.com/jaid/action-uptodater/commits"><img src="https://img.shields.io/github/commits-since/jaid/action-uptodater/v1.2.0?style=flat-square&logo=github" alt="Commits since v1.2.0"/></a> <a href="https://github.com/jaid/action-uptodater/commits"><img src="https://img.shields.io/github/last-commit/jaid/action-uptodater?style=flat-square&logo=github" alt="Last commit"/></a> <a href="https://github.com/jaid/action-uptodater/issues"><img src="https://img.shields.io/github/issues/jaid/action-uptodater?style=flat-square&logo=github" alt="Issues"/></a>  
 
 **GitHub Action that ensures my Node projects use an up-to-date boilerplate setup.**
 
+#### Opinionated
+
+This project is tailored to my personal needs and workflows and therefore highly opinionated. Feel free to use it or get inspired by it, but please do not get frustrated if you come across weird features or have difficulties integrating it in your own ecosystem.
 
 
 
@@ -17,6 +20,51 @@
 
 
 
+
+
+
+## Options
+
+
+
+<table>
+<tr>
+<th></th>
+<th></th>
+<th>Default</th>
+<th>Info</th>
+</tr>
+<tr>
+<td>approve</td>
+<td>*</td>
+<td></td>
+<td>If true, pull requests created by this action are automatically approved and merged</td>
+</tr>
+<tr>
+<td>commitMessagePrefix</td>
+<td>*</td>
+<td>autofix:</td>
+<td>Prefix string used in messages for automatically generated commits</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>*</td>
+<td></td>
+<td>If true, automatically tries to fix some files and commit them to a pull request</td>
+</tr>
+<tr>
+<td>removeBranch</td>
+<td>*</td>
+<td>true</td>
+<td>If true, automatically merged pull requests will delete their branch afterwards</td>
+</tr>
+<tr>
+<td>token</td>
+<td>*</td>
+<td></td>
+<td>Repository token for allowing the action to make commits.</td>
+</tr>
+</table>
 
 
 
@@ -34,33 +82,12 @@
 
 Setting up:
 ```bash
-git clone git@github.com:Jaid/action-uptodater.git
+git clone git@github.com:jaid/action-uptodater.git
 cd action-uptodater
 npm install
 ```
 
 
 ## License
-```text
-MIT License
-
-Copyright © 2020, Jaid <jaid.jsx@gmail.com> (github.com/jaid)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+[MIT License](https://raw.githubusercontent.com/jaid/action-uptodater/master/license.txt)  
+Copyright © 2020, Jaid \<jaid.jsx@gmail.com> (https://github.com/jaid)
