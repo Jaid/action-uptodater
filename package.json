@@ -39,10 +39,12 @@
     "webpack-config-jaid": "^11.2.0"
   },
   "scripts": {
-    "build": "rimraf build && NODE_ENV=production webpack",
+    "build": "rm -rf build && NODE_ENV=production webpack",
     "build-push": "npm run build && git add build && npx git-flush-cli 'Rebuilt src/'",
-    "testOnGithub": "name=$(npx package-name-cli) && npx git-flush-cli Changes && npm run build-push && npx git-flush-cli Rebuilt && cd ../test && git pull && npm run randomCommit && cd ../$name",
-    "prepareActionJest": "npm run build:prod"
+    "testOnGithub": "name=$(package-name-cli) && git-flush-cli 'Testing changes' && npm run buildPush && cd ../test && git pull && echo $(date-now) >> changefile.txt && git-flush-cli 'Random commit for testing action Jaid/$name' && cd ../$name",
+    "prepareActionJest": "npm run build:prod",
+    "buildPush": "npm run build && git add build && git-flush-cli 'Rebuilt src/'",
+    "prepareRelease": "npm run buildPush"
   },
   "description": "GitHub Action that ensures my Node projects use an up-to-date boilerplate setup.",
   "funding": "https://github.com/sponsors/jaid",
