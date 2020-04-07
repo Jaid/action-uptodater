@@ -1,4 +1,5 @@
 
+import fsp from "@absolunet/fsp"
 import ensureArray from "ensure-array"
 import hasContent, {isEmpty} from "has-content"
 
@@ -104,6 +105,15 @@ export default class {
    */
   hasDevelopmentDependency(dependency) {
     return this.hasDependency(dependency, "devDependencies")
+  }
+
+  /**
+   * @param {string} file
+   * @return {Promise<boolean>}
+   */
+  async fileExists(file) {
+    const exists = await fsp.pathExists(file)
+    return exists
   }
 
   /**
