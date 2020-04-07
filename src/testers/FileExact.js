@@ -1,8 +1,10 @@
 import fsp from "@absolunet/fsp"
-import hasha from "hasha"
+import crypto from "crypto"
 import path from "path"
+import readFileString from "read-file-string"
 
 import chalk from "lib/chalk"
+import getMd5OfString from "lib/getMd5OfString"
 
 import Tester from "src/Tester"
 
@@ -21,9 +23,7 @@ export default class extends Tester {
   constructor(file, expectedContent) {
     super()
     this.expectedContent = expectedContent
-    this.expectedHash = hasha(expectedContent, {
-      algorithm: "md5",
-    })
+    this.expectedHash = getMd5OfString(expectedContent)
     this.file = path.resolve(file)
     this.shortFile = file
     this.setTitle(`${chalk.yellow(this.shortFile)} should have md5 ${chalk.blue(this.expectedHash)}`)
@@ -34,13 +34,11 @@ export default class extends Tester {
    * @return {Promise<Pick<boolean, string>>}
    */
   async test() {
-    const exists = await fsp.pathExists(this.file)
-    if (!exists) {
+    const fileContent = await readFileString(this.file)
+    if (!fileContent) {
       return `${this.shortFile} does not exist`
     }
-    const actualHash = await hasha.fromFile(this.file, {
-      algorithm: "md5",
-    })
+    const actualHash = getMd5OfString(fileContent)
     if (actualHash === this.expectedHash) {
       return true
     }
