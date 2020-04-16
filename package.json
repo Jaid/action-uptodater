@@ -52,5 +52,7 @@
     "type": "git",
     "url": "https://github.com/jaid/action-uptodater"
   },
-  "name": "action-uptodater"
+  "name": "action-uptodater",
+  "homepage": "https://github.com/Jaid/action-node-boilerplate",
+  "keywords": []
 }
