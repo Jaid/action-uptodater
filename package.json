@@ -12,7 +12,7 @@
     "@babel/runtime": "^7.9.2",
     "async-af": "^7.0.39",
     "chalk": "^4.0.0",
-    "commit-from-action": "^1.2.0",
+    "commit-from-action": "^1.3.0",
     "crop-string": "^2.0.1",
     "ensure-array": "^1.0.0",
     "figures": "^3.2.0",
@@ -31,12 +31,12 @@
   },
   "devDependencies": {
     "acorn": "^7.1.1",
-    "babel-preset-jaid": "^7.3.5",
+    "babel-preset-jaid": "^7.3.6",
     "browserslist-config-jaid-node": "^2.2.2",
     "eslint": "^6.8.0",
     "eslint-config-jaid": "^1.49.0",
     "rimraf": "^3.0.2",
-    "webpack-config-jaid": "^11.7.2"
+    "webpack-config-jaid": "^11.8.0"
   },
   "scripts": {
     "build": "rm -rf build && NODE_ENV=production webpack",
