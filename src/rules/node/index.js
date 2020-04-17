@@ -3,8 +3,7 @@ import FileExact from "src/testers/FileExact"
 import FileShouldNotExist from "src/testers/FileShouldNotExist.js"
 import PkgFieldExact from "src/testers/PkgFieldExact"
 
-import jsConfig from "./js.json"
-import jsConfigReact from "./jsReact.json"
+import tsConfig from "./ts.json"
 
 export default new class extends Rule {
 
@@ -13,13 +12,7 @@ export default new class extends Rule {
   init() {
     this.addTester(new PkgFieldExact("author", "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)"))
     this.addTester(new FileShouldNotExist("index.js"))
-    let jsConfigTester = null
-    if (this.hasDependency("react-dom")) {
-      jsConfigTester = new FileExact("jsconfig.json", JSON.stringify(jsConfigReact, null, 2))
-    } else {
-      jsConfigTester = new FileExact("jsconfig.json", JSON.stringify(jsConfig, null, 2))
-    }
-    this.addTester(jsConfigTester)
+    this.addTester(new FileExact("tsconfig.json", JSON.stringify(tsConfig, null, 2)))
   }
 
 }
