@@ -13,6 +13,7 @@ export default new class extends Rule {
     this.addTester(new PkgFieldExact("author", "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)"))
     this.addTester(new FileShouldNotExist("index.js"))
     this.addTester(new FileExact("tsconfig.json", JSON.stringify(tsConfig, null, 2)))
+    this.addTester(new FileShouldNotExist("jsconfig.json"))
   }
 
 }
