@@ -8,6 +8,7 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "paths": {
       "lib/*": [
@@ -19,11 +20,7 @@
       "root/*": [
         "./*"
       ]
-    },
-    "typeRoots": [
-      "src/tsd",
-      "node_modules/@types"
-    ]
+    }
   },
   "include": [
     "src/**/*.js"
