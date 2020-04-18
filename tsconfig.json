@@ -8,7 +8,6 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "resolveJsonModule": true,
-    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "paths": {
       "lib/*": [
@@ -23,7 +22,8 @@
     }
   },
   "include": [
-    "src/**/*.js"
+    "src/**/*.js",
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
