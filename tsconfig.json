@@ -19,11 +19,14 @@
       "root/*": [
         "./*"
       ]
-    }
+    },
+    "typeRoots": [
+      "src/tsd",
+      "node_modules/@types"
+    ]
   },
   "include": [
-    "src/**/*.js",
-    "src/**/*.ts"
+    "src/**/*.js"
   ],
   "exclude": [
     "node_modules",
