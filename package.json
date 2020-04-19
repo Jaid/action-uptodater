@@ -53,5 +53,20 @@
   },
   "name": "action-uptodater",
   "homepage": "https://github.com/Jaid/action-node-boilerplate",
-  "keywords": []
+  "keywords": [
+    "action",
+    "actions",
+    "autofix",
+    "boilerplate",
+    "boilerplate-setup",
+    "fix",
+    "github-action",
+    "github-actions",
+    "lint",
+    "linting",
+    "uptodater",
+    "validate",
+    "validation",
+    "workflow"
+  ]
 }
