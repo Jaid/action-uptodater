@@ -4,8 +4,6 @@ import FileExists from "src/testers/FileExists"
 import FileShouldNotExist from "src/testers/FileShouldNotExist.js"
 import PkgFieldExact from "src/testers/PkgFieldExact"
 
-import tsConfigBase from "./tsconfigBase.json"
-
 export default new class extends Rule {
 
   title = "Node"
@@ -16,6 +14,7 @@ export default new class extends Rule {
     this.addTester(new FileExact("tsconfigBase.json", JSON.stringify(tsConfigBase, null, 2)))
     this.addTester(new FileExists("tsconfig.json"))
     this.addTester(new FileShouldNotExist("jsconfig.json"))
+    this.addTester(new FileShouldNotExist("tsconfigBase.json"))
   }
 
 }
