@@ -69,6 +69,7 @@ async function main() {
         branch: commitManager.branch,
       }),
       mergeMessage: commitManager => `Automatically merged boilerplate update from #${commitManager.pullNumber}`,
+      ignoreFiles: ["package-lock.json"],
     })
   }
   /**
