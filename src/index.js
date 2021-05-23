@@ -20,6 +20,8 @@ import pullBody from "./pullBody.hbs"
  * @prop {boolean} autoApprove
  */
 
+console.log(`${process.env.REPLACE_PKG_NAME} v${process.env.REPLACE_PKG_VERSION}`)
+
 /**
  * @type {import("src/Rule").default[]}
  */
