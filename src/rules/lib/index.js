@@ -11,7 +11,7 @@ export default new class extends Rule {
    * @return {Promise<boolean>}
    */
   async isRelevantToRepo() {
-    if (! this.hasDependency("webpack-config-jaid")) {
+    if (!this.hasDependency("webpack-config-jaid")) {
       return false
     }
     if (!this.pkg.webpackConfigJaid) {
