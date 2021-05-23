@@ -17,6 +17,12 @@ export default new class extends Rule {
     if (!this.pkg.webpackConfigJaid) {
       return false
     }
+    // Rule “lib” should run for packages depending on webpack-config-jaid
+    // webpack-config-jaid also depends on itself, but it imports its own source instead of a Node dependency
+    // So we need to add it as an exception here
+    if (this.pkg.name === "webpack-config-jaid") {
+      return true
+    }
     if (this.pkg.webpackConfigJaid.endsWith("Lib") || this.pkg.webpackConfigJaid.endsWith("Class")) {
       return true
     }
