@@ -8,7 +8,7 @@
 
 #### Opinionated
 
-This project is tailored to my personal needs and workflows and therefore highly opinionated. Feel free to use it or get inspired by it, but please do not get frustrated if you come across weird features or have difficulties integrating it in your own ecosystem.
+This project is tailored to my personal needs and workflows and therefore highly opinionated. Feel free to use it or get inspired by it, but please do not get frustrated if you come across weird features or difficulties integrating it in your own ecosystem.
 
 
 
@@ -76,6 +76,8 @@ This project is tailored to my personal needs and workflows and therefore highly
 
 
 
+
+
 ## Development
 
 
@@ -90,4 +92,9 @@ npm install
 
 ## License
 [MIT License](https://raw.githubusercontent.com/jaid/action-uptodater/master/license.txt)  
-Copyright © 2020, Jaid \<jaid.jsx@gmail.com> (https://github.com/jaid)
+Copyright © 2021, Jaid \<jaid.jsx@gmail.com> (https://github.com/jaid)
+
+<!---
+Readme generated with tldw v7.0.0
+https://github.com/Jaid/tldw
+-->
