@@ -20,8 +20,6 @@ import pullBody from "./pullBody.hbs"
  * @prop {boolean} autoApprove
  */
 
-console.log(`${process.env.REPLACE_PKG_NAME} v${process.env.REPLACE_PKG_VERSION}`)
-
 /**
  * @type {import("src/Rule").default[]}
  */
@@ -35,9 +33,9 @@ for (const value of rulesRequire.keys()) {
   rules.push(rule)
 }
 
-console.log(`${zahl(Object.keys(rules).length, "rule")} loaded`)
-
 async function main() {
+  console.log(`${process.env.REPLACE_PKG_NAME} v${process.env.REPLACE_PKG_VERSION}`)
+  console.log(`${zahl(Object.keys(rules).length, "rule")} loaded`)
   const projectInfo = {
     pkg: await getPkg(),
     shouldFix: getBooleanInput("fix"),
