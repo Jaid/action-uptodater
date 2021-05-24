@@ -11,7 +11,7 @@
     "@actions/io": "^1.1.0",
     "async-af": "^7.0.39",
     "chalk": "^4.1.1",
-    "commit-from-action": "^2.0.1",
+    "commit-from-action": "^2.0.2",
     "crop-string": "^2.0.1",
     "ensure-array": "^1.0.0",
     "figures": "^3.2.0",
