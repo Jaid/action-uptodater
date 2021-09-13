@@ -1,7 +1,7 @@
 import Rule from "src/Rule"
 import FileExact from "src/testers/FileExact"
 
-import jestConfig from "!raw-loader!./jest.config.js"
+import jestConfig from "!raw-loader!./jest.config.json"
 
 export default new class extends Rule {
 
@@ -28,7 +28,7 @@ export default new class extends Rule {
   }
 
   init() {
-    this.addTester(new FileExact("jest.config.js", jestConfig))
+    this.addTester(new FileExact("jest.config.json", jestConfig))
   }
 
 }

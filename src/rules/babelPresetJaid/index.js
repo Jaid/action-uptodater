@@ -13,7 +13,7 @@ export default new class extends Rule {
   }
 
   init() {
-    this.addTester(new FileHasContent("jest.config.js"))
+    this.addTester(new FileHasContent("jest.config.json"))
   }
 
 }
