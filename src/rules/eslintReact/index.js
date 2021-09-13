@@ -13,7 +13,7 @@ export default new class extends Rule {
   }
 
   init() {
-    this.addTester(new FileExact(".eslintrc.js", require("./eslintrc.txt").default))
+    this.addTester(new FileExact(".eslintrc.json", require("./eslintrc.txt").default))
   }
 
 }
