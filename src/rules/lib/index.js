@@ -1,7 +1,7 @@
 import Rule from "src/Rule"
 import FileExact from "src/testers/FileExact"
 
-import jestConfig from "!raw-loader!./jest.config.json"
+import jestConfig from "!raw-loader!./jest.config.txt"
 
 export default new class extends Rule {
 
