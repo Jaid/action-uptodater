@@ -80,6 +80,9 @@ This project is tailored to my personal needs and workflows and therefore highly
 
 ## Development
 
+<details>
+<summary><b>Development hints for maintaining and improving action-uptodater</b></summary>
+
 
 
 Setting up:
@@ -89,12 +92,13 @@ cd action-uptodater
 npm install
 ```
 
+</details>
 
 ## License
 [MIT License](https://raw.githubusercontent.com/jaid/action-uptodater/master/license.txt)  
 Copyright © 2021, Jaid \<jaid.jsx@gmail.com> (https://github.com/jaid)
 
 <!---
-Readme generated with tldw v7.0.0
+Readme generated with tldw v7.1.0
 https://github.com/Jaid/tldw
 -->
