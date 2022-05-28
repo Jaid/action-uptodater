@@ -24,10 +24,22 @@ import pullBody from "./pullBody.hbs"
  */
 let rules = []
 
-const rulesRequire = require.context("./rules/", true, /index.js$/)
-for (const value of rulesRequire.keys()) {
-  const {ruleName} = value.match(/[/\\](?<ruleName>.+?)[/\\]index\.js$/).groups
-  const rule = new rulesRequire(value).default
+const ruleNames = [
+  "babelPresetJaid",
+  "eslint",
+  "eslintNode",
+  "eslintReact",
+  "githubAction",
+  "global",
+  "jaidCore",
+  "jaidCoreDashboard",
+  "lib",
+  "node",
+  "publicNodePackage",
+  "webpackConfigJaid",
+]
+for (const ruleName of ruleNames) {
+  const rule = await import("./rules/" + ruleName + "/index.js")
   rule.id = ruleName
   rules.push(rule)
 }
