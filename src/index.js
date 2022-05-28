@@ -1,7 +1,7 @@
 import {endGroup, setFailed, startGroup} from "@actions/core"
 import {context} from "@actions/github"
 import CommitManager from "./lib/esm/commit-from-action.js"
-import getBooleanInput from "get-boolean-action-input"
+import getBooleanInput from "./lib/esm/get-boolean-action-input.js"
 import hasContent from "has-content"
 import {isFunction} from "lodash"
 import pFilter from "p-filter"
