@@ -1,4 +1,4 @@
-import cropString from "crop-string"
+import cropString from "../lib/esm/crop-string.js"
 import {isEmpty} from "../lib/esm/has-content.js"
 import json5 from "json5"
 import {isEqual} from "lodash"
