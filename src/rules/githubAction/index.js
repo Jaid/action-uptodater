@@ -1,5 +1,5 @@
-import Rule from "../../Rule"
-import ScriptExact from "../../testers/ScriptExact"
+import Rule from "../../Rule.js"
+import ScriptExact from "../../testers/ScriptExact.js"
 
 export default new class extends Rule {
 

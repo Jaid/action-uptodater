@@ -2,9 +2,8 @@ import hasContent from "has-content"
 import {isFunction, isString} from "lodash"
 import stripAnsi from "strip-ansi"
 
-import icons from "./lib/consoleIcons"
-
-import Fix from "./Fix"
+import Fix from "./Fix.js"
+import icons from "./lib/consoleIcons.js"
 
 export default class {
 

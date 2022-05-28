@@ -1,6 +1,6 @@
 import figures from "figures"
 
-import chalk from "../lib/chalk"
+import chalk from "./chalk.js"
 
 export default {
   pass: chalk.green(figures.tick),

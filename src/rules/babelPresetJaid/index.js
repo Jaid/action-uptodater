@@ -1,5 +1,5 @@
-import Rule from "../../Rule"
-import FileHasContent from "../../testers/FileHasContent"
+import Rule from "../../Rule.js"
+import FileHasContent from "../../testers/FileHasContent.js"
 
 export default new class extends Rule {
 

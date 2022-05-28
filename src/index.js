@@ -7,10 +7,9 @@ import {isFunction} from "lodash"
 import pFilter from "p-filter"
 import zahl from "zahl"
 
-import chalk from "./lib/chalk"
-import getPkg from "./lib/getPkg"
-
 import Fix from "./Fix.js"
+import chalk from "./lib/chalk.js"
+import getPkg from "./lib/getPkg.js"
 import pullBody from "./pullBody.hbs"
 
 /**

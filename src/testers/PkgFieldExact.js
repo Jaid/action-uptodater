@@ -3,10 +3,9 @@ import {isEmpty} from "has-content"
 import json5 from "json5"
 import {isEqual} from "lodash"
 
-import chalk from "../lib/chalk"
-import getPkg from "../lib/getPkg"
-
-import Tester from "../Tester"
+import chalk from "../lib/chalk.js"
+import getPkg from "../lib/getPkg.js"
+import Tester from "../Tester.js"
 
 export default class extends Tester {
 

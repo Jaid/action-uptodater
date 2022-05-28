@@ -1,5 +1,5 @@
-import Rule from "../../Rule"
-import FileExact from "../../testers/FileExact"
+import Rule from "../../Rule.js"
+import FileExact from "../../testers/FileExact.js"
 
 export default new class extends Rule {
 

@@ -2,9 +2,8 @@ import path from "node:path"
 
 import fsp from "@absolunet/fsp"
 
-import chalk from "../lib/chalk"
-
-import Tester from "../Tester"
+import chalk from "../lib/chalk.js"
+import Tester from "../Tester.js"
 
 export default class extends Tester {
 

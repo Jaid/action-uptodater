@@ -1,6 +1,6 @@
-import Rule from "../../Rule"
-import FileHasContent from "../../testers/FileHasContent"
-import ScriptExact from "../../testers/ScriptExact"
+import Rule from "../../Rule.js"
+import FileHasContent from "../../testers/FileHasContent.js"
+import ScriptExact from "../../testers/ScriptExact.js"
 
 export default new class extends Rule {
 

@@ -1,7 +1,7 @@
-import Rule from "../../Rule"
-import FileExact from "../../testers/FileExact"
-import FileHasContent from "../../testers/FileHasContent"
-import FolderExists from "../../testers/FolderExists"
+import Rule from "../../Rule.js"
+import FileExact from "../../testers/FileExact.js"
+import FileHasContent from "../../testers/FileHasContent.js"
+import FolderExists from "../../testers/FolderExists.js"
 
 export default new class extends Rule {
 

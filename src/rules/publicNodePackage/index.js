@@ -1,9 +1,8 @@
 import {context} from "@actions/github"
 
-import getPkg from "../../lib/getPkg"
-
-import Rule from "../../Rule"
-import PkgFieldExact from "../../testers/PkgFieldExact"
+import getPkg from "../../lib/getPkg.js"
+import Rule from "../../Rule.js"
+import PkgFieldExact from "../../testers/PkgFieldExact.js"
 
 export default new class extends Rule {
 
