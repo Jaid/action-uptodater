@@ -39,7 +39,8 @@ const ruleNames = [
   "webpackConfigJaid",
 ]
 for (const ruleName of ruleNames) {
-  const rule = await import("./rules/" + ruleName + "/index.js")
+  const ruleClass = await import("./rules/" + ruleName + "/index.js")
+  const rule = new ruleClass
   rule.id = ruleName
   rules.push(rule)
 }
