@@ -5,7 +5,7 @@ import getBooleanInput from "./lib/esm/get-boolean-action-input.js"
 import hasContent from "has-content"
 import {isFunction} from "lodash"
 import pFilter from "p-filter"
-import zahl from "zahl"
+import zahl from "./lib/esm/zahl.js"
 
 import Fix from "./Fix.js"
 import chalk from "./lib/chalk.js"
