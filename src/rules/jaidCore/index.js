@@ -2,6 +2,7 @@ import Rule from "../../Rule.js"
 import FileExact from "../../testers/FileExact.js"
 import FileHasContent from "../../testers/FileHasContent.js"
 import FolderExists from "../../testers/FolderExists.js"
+import indexText from "!raw-loader!./srcIndex.js"
 
 export default new class extends Rule {
 
@@ -15,7 +16,7 @@ export default new class extends Rule {
   }
 
   init() {
-    this.addTester(new FileExact("src/index.js", require("!raw-loader!./srcIndex.js").default))
+    this.addTester(new FileExact("src/index.js", indexText))
     this.addTester(new FolderExists("src/plugins"))
     this.addTester(new FileHasContent("src/core.js"))
   }
