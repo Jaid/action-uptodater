@@ -3,7 +3,7 @@ import fsp from "@absolunet/fsp"
 import ensureArray from "ensure-array"
 import hasContent, {isEmpty} from "has-content"
 
-import icons from "lib/consoleIcons"
+import icons from "./lib/consoleIcons"
 
 export default class {
 

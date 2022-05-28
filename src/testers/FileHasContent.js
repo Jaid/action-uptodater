@@ -2,9 +2,9 @@ import path from "node:path"
 
 import fsp from "@absolunet/fsp"
 
-import chalk from "lib/chalk"
+import chalk from "../lib/chalk"
 
-import Tester from "src/Tester"
+import Tester from "../Tester"
 
 export default class extends Tester {
 

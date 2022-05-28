@@ -1,9 +1,9 @@
 import {context} from "@actions/github"
 
-import getPkg from "lib/getPkg"
+import getPkg from "../../lib/getPkg"
 
-import Rule from "src/Rule"
-import PkgFieldExact from "src/testers/PkgFieldExact"
+import Rule from "../../Rule"
+import PkgFieldExact from "../../testers/PkgFieldExact"
 
 export default new class extends Rule {
 

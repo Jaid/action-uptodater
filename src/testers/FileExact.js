@@ -4,10 +4,10 @@ import path from "node:path"
 import fsp from "@absolunet/fsp"
 import readFileString from "read-file-string"
 
-import chalk from "lib/chalk"
-import getMd5OfString from "lib/getMd5OfString"
+import chalk from "../lib/chalk"
+import getMd5OfString from "../lib/getMd5OfString"
 
-import Tester from "src/Tester"
+import Tester from "../Tester"
 
 export default class extends Tester {
 

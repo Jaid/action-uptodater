@@ -1,5 +1,5 @@
-import Rule from "src/Rule"
-import FileHasContent from "src/testers/FileHasContent"
+import Rule from "../../Rule"
+import FileHasContent from "../../testers/FileHasContent"
 
 export default new class extends Rule {
 

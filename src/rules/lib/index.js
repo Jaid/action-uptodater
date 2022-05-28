@@ -1,5 +1,5 @@
-import Rule from "src/Rule"
-import FileExact from "src/testers/FileExact"
+import Rule from "../../Rule"
+import FileExact from "../../testers/FileExact"
 
 import jestConfig from "!raw-loader!./jest.config.txt"
 

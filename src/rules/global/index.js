@@ -1,7 +1,7 @@
-import Rule from "src/Rule"
-import FileExact from "src/testers/FileExact"
-import FileHasContent from "src/testers/FileHasContent"
-import FileShouldNotExist from "src/testers/FileShouldNotExist"
+import Rule from "../../Rule"
+import FileExact from "../../testers/FileExact"
+import FileHasContent from "../../testers/FileHasContent"
+import FileShouldNotExist from "../../testers/FileShouldNotExist"
 
 export default new class extends Rule {
 

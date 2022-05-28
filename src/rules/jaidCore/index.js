@@ -1,7 +1,7 @@
-import Rule from "src/Rule"
-import FileExact from "src/testers/FileExact"
-import FileHasContent from "src/testers/FileHasContent"
-import FolderExists from "src/testers/FolderExists"
+import Rule from "../../Rule"
+import FileExact from "../../testers/FileExact"
+import FileHasContent from "../../testers/FileHasContent"
+import FolderExists from "../../testers/FolderExists"
 
 export default new class extends Rule {
 

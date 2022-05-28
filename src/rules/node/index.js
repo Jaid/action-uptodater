@@ -1,7 +1,7 @@
-import Rule from "src/Rule"
-import FileExists from "src/testers/FileExists"
-import FileShouldNotExist from "src/testers/FileShouldNotExist.js"
-import PkgFieldExact from "src/testers/PkgFieldExact"
+import Rule from "../../Rule"
+import FileExists from "../../testers/FileExists"
+import FileShouldNotExist from "../../testers/FileShouldNotExist.js"
+import PkgFieldExact from "../../testers/PkgFieldExact"
 
 export default new class extends Rule {
 
