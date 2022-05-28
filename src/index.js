@@ -1,6 +1,6 @@
 import {endGroup, setFailed, startGroup} from "@actions/core"
 import {context} from "@actions/github"
-import CommitManager from "commit-from-action"
+import CommitManager from "./lib/esm/commit-from-action.js"
 import getBooleanInput from "get-boolean-action-input"
 import hasContent from "has-content"
 import {isFunction} from "lodash"
