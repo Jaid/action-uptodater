@@ -1,9 +1,9 @@
-import cropString from "../lib/esm/crop-string.js"
-import {isEmpty} from "../lib/esm/has-content.js"
 import json5 from "json5"
 import {isEqual} from "lodash"
 
 import chalk from "../lib/chalk.js"
+import cropString from "../lib/esm/crop-string.js"
+import {isEmpty} from "../lib/esm/has-content.js"
 import getPkg from "../lib/getPkg.js"
 import Tester from "../Tester.js"
 

@@ -1,9 +1,9 @@
 
 import fsp from "@absolunet/fsp"
 import ensureArray from "ensure-array"
-import hasContent, {isEmpty} from "./lib/esm/has-content.js"
 
 import icons from "./lib/consoleIcons.js"
+import hasContent, {isEmpty} from "./lib/esm/has-content.js"
 
 export default class {
 

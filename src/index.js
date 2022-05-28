@@ -1,14 +1,14 @@
 import {endGroup, setFailed, startGroup} from "@actions/core"
 import {context} from "@actions/github"
-import CommitManager from "./lib/esm/commit-from-action.js"
-import getBooleanInput from "./lib/esm/get-boolean-action-input.js"
-import hasContent from "./lib/esm/has-content.js"
 import {isFunction} from "lodash"
 import pFilter from "p-filter"
-import zahl from "./lib/esm/zahl.js"
 
 import Fix from "./Fix.js"
 import chalk from "./lib/chalk.js"
+import CommitManager from "./lib/esm/commit-from-action.js"
+import getBooleanInput from "./lib/esm/get-boolean-action-input.js"
+import hasContent from "./lib/esm/has-content.js"
+import zahl from "./lib/esm/zahl.js"
 import getPkg from "./lib/getPkg.js"
 import pullBody from "./pullBody.hbs"
 
@@ -39,7 +39,7 @@ const ruleNames = [
   "webpackConfigJaid",
 ]
 for (const ruleName of ruleNames) {
-  const {default: rule} = await import("./rules/" + ruleName + "/index.js")
+  const {default: rule} = await import(`./rules/${ruleName}/index.js`)
   rule.id = ruleName
   rules.push(rule)
 }

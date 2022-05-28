@@ -1,9 +1,9 @@
-import hasContent from "./lib/esm/has-content.js"
 import {isFunction, isString} from "lodash"
 import stripAnsi from "strip-ansi"
 
 import Fix from "./Fix.js"
 import icons from "./lib/consoleIcons.js"
+import hasContent from "./lib/esm/has-content.js"
 
 export default class {
 

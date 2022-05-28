@@ -2,8 +2,9 @@ import Rule from "../../Rule.js"
 import FileExact from "../../testers/FileExact.js"
 import FileHasContent from "../../testers/FileHasContent.js"
 import FileShouldNotExist from "../../testers/FileShouldNotExist.js"
-import licenseText from "./license.txt"
 import editorconfigText from "./editorconfig.txt"
+import licenseText from "./license.txt"
+
 import fundingText from "!raw-loader!./funding.yml"
 
 export default new class extends Rule {
