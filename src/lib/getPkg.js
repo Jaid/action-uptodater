@@ -1,5 +1,6 @@
+import path from "node:path"
+
 import fsp from "@absolunet/fsp"
-import path from "path"
 
 export default async function () {
   const file = path.resolve("package.json")

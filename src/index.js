@@ -10,7 +10,7 @@ import zahl from "zahl"
 import chalk from "lib/chalk"
 import getPkg from "lib/getPkg"
 
-import Fix from "./Fix"
+import Fix from "./Fix.js"
 import pullBody from "./pullBody.hbs"
 
 /**

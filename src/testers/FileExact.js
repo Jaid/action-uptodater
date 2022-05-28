@@ -1,6 +1,7 @@
+import crypto from "node:crypto"
+import path from "node:path"
+
 import fsp from "@absolunet/fsp"
-import crypto from "crypto"
-import path from "path"
 import readFileString from "read-file-string"
 
 import chalk from "lib/chalk"
