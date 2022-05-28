@@ -40,6 +40,7 @@ const ruleNames = [
 ]
 for (const ruleName of ruleNames) {
   const {default: ruleClass} = await import("./rules/" + ruleName + "/index.js")
+  console.dir(ruleClass)
   const rule = new ruleClass
   rule.id = ruleName
   rules.push(rule)
