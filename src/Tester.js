@@ -1,4 +1,4 @@
-import hasContent from "has-content"
+import hasContent from "./lib/esm/has-content.js"
 import {isFunction, isString} from "lodash"
 import stripAnsi from "strip-ansi"
 

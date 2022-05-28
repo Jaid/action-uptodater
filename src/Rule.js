@@ -1,7 +1,7 @@
 
 import fsp from "@absolunet/fsp"
 import ensureArray from "ensure-array"
-import hasContent, {isEmpty} from "has-content"
+import hasContent, {isEmpty} from "./lib/esm/has-content.js"
 
 import icons from "./lib/consoleIcons.js"
 

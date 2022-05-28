@@ -1,5 +1,5 @@
 import cropString from "crop-string"
-import {isEmpty} from "has-content"
+import {isEmpty} from "../lib/esm/has-content.js"
 import json5 from "json5"
 import {isEqual} from "lodash"
 
