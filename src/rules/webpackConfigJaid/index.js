@@ -14,7 +14,7 @@ export default new class extends Rule {
   }
 
   init() {
-    this.addTester(new FileHasContent("webpack.config.babel.js"))
+    this.addTester(new FileHasContent("webpack.config.js"))
     this.addTester(new ScriptExact("prepareActionJest", "npm run build:prod"))
   }
 
