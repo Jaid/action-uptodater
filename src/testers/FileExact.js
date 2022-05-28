@@ -2,7 +2,7 @@ import crypto from "node:crypto"
 import path from "node:path"
 
 import fsp from "@absolunet/fsp"
-import readFileString from "read-file-string"
+import readFileString from "../lib/esm/read-file-string.js"
 
 import chalk from "../lib/chalk.js"
 import getMd5OfString from "../lib/getMd5OfString.js"
