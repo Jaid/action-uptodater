@@ -28,7 +28,11 @@ export default new class extends Rule {
   }
 
   init() {
-    this.addTester(new FileExact("jest.config.json", jestConfig))
+    if (this.hasDevelopmentDependency("jest-light-runner")) {
+      this.addTester(new FileExact("jest.config.json", jestLightConfig))
+    } else {
+      this.addTester(new FileExact("jest.config.json", jestConfig))
+    }
   }
 
 }
