@@ -1,2 +1,4 @@
-github: Jaid
-custom: https://twitch.tv/products/jaidchen
+module.exports = {
+	"github": "Jaid",
+	"custom": "https://twitch.tv/products/jaidchen"
+};
