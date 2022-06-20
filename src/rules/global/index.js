@@ -5,7 +5,8 @@ import FileShouldNotExist from "../../testers/FileShouldNotExist.js"
 import editorconfigText from "./editorconfig.txt"
 import licenseText from "./license.txt"
 
-import fundingText from "./funding.yml?raw"
+import fundingText from "!raw-loader!./funding.yml"
+// import fundingText from "./funding.yml?raw"
 
 export default new class extends Rule {
 
