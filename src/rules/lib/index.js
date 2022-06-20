@@ -1,9 +1,7 @@
 import Rule from "../../Rule.js"
 import FileExact from "../../testers/FileExact.js"
-import jestConfig from "!raw-loader!./jest.config.txt"
-import jestLightConfig from "!raw-loader!./jest.config.txt"
-// import jestConfig from "./jest.config.txt?raw"
-// import jestLightConfig from "./jest.config.txt?raw"
+import jestConfig from "./jest.config.txt?raw"
+import jestLightConfig from "./jest.config.txt?raw"
 
 export default new class extends Rule {
 
