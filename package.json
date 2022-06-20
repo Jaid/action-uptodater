@@ -35,7 +35,7 @@
     "eslint-config-jaid": "^1.63.1",
     "rimraf": "^3.0.2",
     "tsconfig-jaid": "^2.3.1",
-    "webpack-config-jaid": "^17.4.1"
+    "webpack-config-jaid": "^17.4.2"
   },
   "scripts": {
     "build": "rm -rf build && NODE_ENV=production webpack",
