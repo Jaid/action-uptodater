@@ -2,8 +2,7 @@ import Rule from "../../Rule.js"
 import FileExact from "../../testers/FileExact.js"
 import FileHasContent from "../../testers/FileHasContent.js"
 import FolderExists from "../../testers/FolderExists.js"
-
-import indexText from "!raw-loader!./srcIndex.js"
+import indexText from "./srcIndex.js?raw"
 
 export default new class extends Rule {
 
