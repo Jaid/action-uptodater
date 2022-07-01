@@ -1,5 +1,6 @@
 {
   "testEnvironment": "node",
+  "maxWorkers": 1,
   "coverageDirectory": "<rootDir>/dist/jest/coverage",
   "collectCoverageFrom": [
     "<rootDir>/dist/package/development/**",
@@ -16,6 +17,5 @@
   "modulePathIgnorePatterns": [
     "<rootDir>/dist",
     "<rootDir>/build"
-  ],
-  "maxWorkers": 1
+  ]
 }

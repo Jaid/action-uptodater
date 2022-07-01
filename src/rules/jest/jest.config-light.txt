@@ -1,0 +1,5 @@
+{
+  "testEnvironment": "node",
+  "maxWorkers": 1,
+  "runner": "jest-light-runner"
+}

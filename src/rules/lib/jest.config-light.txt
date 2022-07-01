@@ -1,4 +1,0 @@
-{
-  "testEnvironment": "node",
-  "maxWorkers": 1
-}
