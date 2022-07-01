@@ -10,11 +10,12 @@ export default new class extends Rule {
    * @return {Promise<boolean>}
    */
   async isRelevantToRepo() {
-    return this.hasDependency("webpack-config-jaid")
+    return this.hasDevelopmentDependency("webpack-config-jaid")
   }
 
   init() {
     this.addTester(new FileHasContent("webpack.config.js"))
+    this.addTester(new FileShouldNotExist("webpack.config.babel.js"))
     this.addTester(new ScriptExact("prepareActionJest", "npm run build:prod"))
   }
 
