@@ -1,4 +1,2 @@
-module.exports = {
-	"github": "Jaid",
-	"custom": "https://twitch.tv/products/jaidchen"
-};
+github: Jaid
+custom: https://twitch.tv/products/jaidchen
