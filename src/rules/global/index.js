@@ -12,11 +12,11 @@ export default new class extends Rule {
   title = "Any repository"
 
   init() {
-    this.addTester(new FileExact("license.txt", licenseText()))
-    this.addTester(new FileExact(".editorconfig", editorconfigText()))
-    this.addTester(new FileExact(".github/funding.yml", licenseText({
+    this.addTester(new FileExact("license.txt", licenseText({
       year: (new Date()).getFullYear()
     })))
+    this.addTester(new FileExact(".editorconfig", editorconfigText()))
+    this.addTester(new FileExact(".github/funding.yml", fundingText()))
     this.addTester(new FileHasContent("readme.md"))
     this.addTester(new FileShouldNotExist(".travis.yml"))
   }
