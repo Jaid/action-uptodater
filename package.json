@@ -32,9 +32,9 @@
     "babel-preset-jaid": "^14.0.0",
     "browserslist-config-jaid-node": "^3.0.0",
     "eslint": "^8.18.0",
-    "eslint-config-jaid": "^1.63.1",
+    "eslint-config-jaid": "^2.0.1",
     "rimraf": "^3.0.2",
-    "tsconfig-jaid": "^2.3.1",
+    "tsconfig-jaid": "^2.3.2",
     "webpack-config-jaid": "^17.4.2"
   },
   "scripts": {
