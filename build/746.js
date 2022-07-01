@@ -1,5 +1,5 @@
 /*!
-*** action-uptodater 2.5.0
+*** action-uptodater 2.5.1
 *** Copyright © 2022, Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)
 *** @license MIT
 *** See https://github.com/Jaid/action-node-boilerplate
