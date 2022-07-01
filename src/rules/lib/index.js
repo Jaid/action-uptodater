@@ -1,7 +1,5 @@
+import FileExists from "src/testers/FileExists.js"
 import Rule from "../../Rule.js"
-import FileExact from "../../testers/FileExact.js"
-import jestConfig from "./jest.config.txt?raw"
-import jestLightConfig from "./jest.config.txt?raw"
 
 export default new class extends Rule {
 
@@ -28,11 +26,7 @@ export default new class extends Rule {
   }
 
   init() {
-    if (this.hasDevelopmentDependency("jest-light-runner")) {
-      this.addTester(new FileExact("jest.config.json", jestLightConfig))
-    } else {
-      this.addTester(new FileExact("jest.config.json", jestConfig))
-    }
+    this.addTester(new FileExists("readme/config.yml"))
   }
 
 }
