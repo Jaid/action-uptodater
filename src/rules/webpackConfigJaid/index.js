@@ -1,4 +1,4 @@
-import FileShouldNotExist from "../src/testers/FileShouldNotExist.js"
+import FileShouldNotExist from "../../testers/FileShouldNotExist.js"
 import Rule from "../../Rule.js"
 import FileHasContent from "../../testers/FileHasContent.js"
 import ScriptExact from "../../testers/ScriptExact.js"
