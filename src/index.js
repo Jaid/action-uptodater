@@ -34,6 +34,8 @@ const ruleNames = [
   "jaidCore",
   "jaidCoreDashboard",
   "lib",
+  "jest",
+  "no-jest",
   "node",
   "publicNodePackage",
   "webpackConfigJaid",
