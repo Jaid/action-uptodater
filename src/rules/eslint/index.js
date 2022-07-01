@@ -1,6 +1,6 @@
 import Rule from "../../Rule.js"
 import FileExact from "../../testers/FileExact.js"
-import eslintIgnoreText from "./eslintignore.txt"
+import eslintIgnoreText from "./eslintignore.hbs"
 
 export default new class extends Rule {
 
@@ -14,7 +14,7 @@ export default new class extends Rule {
   }
 
   init() {
-    this.addTester(new FileExact(".eslintignore", eslintIgnoreText))
+    this.addTester(new FileExact(".eslintignore", eslintIgnoreText()))
   }
 
 }

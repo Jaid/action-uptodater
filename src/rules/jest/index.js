@@ -1,7 +1,7 @@
 import Rule from "../../Rule.js"
 import FileExact from "../../testers/FileExact.js"
-import jestConfig from "./jest.config.txt?raw.js.js"
-import jestLightConfig from "./jest.config-light.txt?raw.js.js"
+import jestConfig from "./jest.config.hbs"
+import jestLightConfig from "./jest.config-light.hbs"
 
 export default new class extends Rule {
 
@@ -16,9 +16,9 @@ export default new class extends Rule {
 
   init() {
     if (this.hasDevelopmentDependency("jest-light-runner")) {
-      this.addTester(new FileExact("jest.config.json", jestLightConfig))
+      this.addTester(new FileExact("jest.config.json", jestLightConfig()))
     } else {
-      this.addTester(new FileExact("jest.config.json", jestConfig))
+      this.addTester(new FileExact("jest.config.json", jestConfig()))
     }
   }
 
